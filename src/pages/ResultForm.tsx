@@ -28,7 +28,7 @@ export default function ResultForm() {
                     };
 
                     const roll = form.rollNo?.value;
-                    const semester = form.semester.value;
+                    const semester = form.semester.value.split(' ')[0];
 
                     if (semester === "Select Semester" || !semester) {
                               return toast.error("Please select a semester");
@@ -56,7 +56,7 @@ export default function ResultForm() {
                                         if (data?.data === null) {
                                                   Swal.fire({
                                                             title: 'Oops!',
-                                                            text: 'Result is not published yet!',
+                                                            text: 'Result is not found!',
                                                             icon: 'error',
                                                             confirmButtonText: 'OK'
                                                   })
@@ -211,9 +211,9 @@ export default function ResultForm() {
                                                                                                                                             <option disabled selected>
                                                                                                                                                       Select Semester
                                                                                                                                             </option>
-                                                                                                                                            {/* <option>4th</option> */}
-                                                                                                                                            <option>5th</option>
-                                                                                                                                            <option>7th</option>
+                                                                                                                                            <option>1st Semester</option>
+                                                                                                                                            <option>5th Semester</option>
+                                                                                                                                            <option>7th Semester</option>
                                                                                                                                   </select>
                                                                                                                         </div>
                                                                                                               </div>
