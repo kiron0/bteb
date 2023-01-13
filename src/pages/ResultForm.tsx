@@ -14,7 +14,7 @@ export default function ResultForm() {
           const resultSheet = useRef(null);
 
           const windowReload = () => {
-                    window.location.reload();
+                    setFinalResult("" as any);
           }
 
           const handleResult = (e: React.SyntheticEvent) => {
@@ -39,7 +39,7 @@ export default function ResultForm() {
 
                     // send a POST request to the server
 
-                    fetch('https://bteb.biplophossain.me/api/bteb/get-result/individual', {
+                    fetch(`https://bteb.biplophossain.me/api/bteb/get-result/individual/${semester}`, {
                               method: 'POST',
                               headers: {
                                         'Accept': 'application/json',
@@ -55,10 +55,10 @@ export default function ResultForm() {
                                         setFinalResult(data?.data);
                                         if (data?.data === null) {
                                                   Swal.fire({
-                                                            title: 'Oops!',
-                                                            text: 'Result is not found!',
+                                                            title: 'Sorry!',
+                                                            text: 'Result not found!',
                                                             icon: 'error',
-                                                            confirmButtonText: 'OK'
+                                                            confirmButtonText: "It's Ok"
                                                   })
                                         }
                               }
@@ -212,7 +212,11 @@ export default function ResultForm() {
                                                                                                                                                       Select Semester
                                                                                                                                             </option>
                                                                                                                                             <option>1st Semester</option>
+                                                                                                                                            <option>2nd Semester</option>
+                                                                                                                                            <option>3rd Semester</option>
+                                                                                                                                            <option>4th Semester</option>
                                                                                                                                             <option>5th Semester</option>
+                                                                                                                                            <option>6th Semester</option>
                                                                                                                                             <option>7th Semester</option>
                                                                                                                                   </select>
                                                                                                                         </div>
