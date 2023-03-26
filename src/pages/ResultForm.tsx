@@ -1,123 +1,71 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import Header from '../assets/header-img.png';
-import Pass from '../assets/pass-img.png';
-import Fail from '../assets/fail-img.png';
 import Swal from 'sweetalert2';
-import ReactToPrint from 'react-to-print';
+import moment from 'moment';
 import Footer from '../shared/Footer';
 import { toast } from 'react-hot-toast';
+import Loading from '../components/Loading';
+import { AUTH_KEY, BASE_API } from '../config';
 
 export default function ResultForm() {
           const [finalResult, setFinalResult] = useState({} as any);
-          // const [groupResult, setGroupResult] = useState({} as any);
-          // const [resultType, setResultType] = useState('individual');
-          const resultSheet = useRef(null);
+          const [loading, setLoading] = useState<boolean>(false);
 
-          const windowReload = () => {
+          const date = (date: string) => {
+                    return moment(date).format('Do MMM YYYY');
+          }
+
+          const searchAgain = () => {
                     setFinalResult("" as any);
           }
 
           const handleResult = (e: React.SyntheticEvent) => {
+                    setLoading(true);
                     e.preventDefault();
                     const form = e.target as typeof e.target & {
                               rollNo: { value: string };
-                              semester: { value: string };
-
-                              roll_from: { value: string };
-                              roll_to: { value: string };
+                              reg: { value: string };
                     };
 
                     const roll = form.rollNo?.value;
-                    const semester = form.semester.value.split(' ')[0];
+                    const reg = form.reg.value;
 
-                    if (semester === "Select Semester" || !semester) {
-                              return toast.error("Please select a semester");
-                    }
-
-                    // const rollFrom = form.roll_from?.value;
-                    // const rollTo = form.roll_to?.value;
-
-                    // send a POST request to the server
-
-                    fetch(`https://bteb.biplophossain.me/api/bteb/get-result/individual/${semester}`, {
-                              method: 'POST',
+                    fetch(`${BASE_API}/results?roll=${roll}&reg=${reg}&key=${AUTH_KEY}`, {
+                              method: 'GET',
                               headers: {
                                         'Accept': 'application/json',
                                         'Content-Type': 'application/json'
                               },
-                              body: JSON.stringify({
-                                        roll: roll,
-                                        semester: semester
-                              })
                     })
                               .then(res => res.json())
                               .then(data => {
-                                        setFinalResult(data?.data);
-                                        if (data?.data === null) {
+                                        if (data.roll === undefined) {
                                                   Swal.fire({
-                                                            title: 'Sorry!',
-                                                            text: 'Result not found!',
+                                                            title: 'Oops!',
+                                                            text: 'Result not found',
                                                             icon: 'error',
-                                                            confirmButtonText: "It's Ok"
+                                                            confirmButtonText: 'Ok'
                                                   })
+                                                  setLoading(false);
+                                        } else {
+                                                  setFinalResult(data);
+                                                  setLoading(false);
+                                                  if (data?.warning) {
+                                                            toast.error(`Found from ${data?.regulation} regulation`, {
+                                                                      icon: '🚨',
+                                                                      style: {
+                                                                                border: '1px solid #713200',
+                                                                                padding: '16px',
+                                                                                color: '#713200',
+                                                                                borderRadius: '10px',
+                                                                                background: '#fff3cd',
+                                                                      },
+                                                                      duration: 3000,
+                                                            });
+                                                  }
                                         }
                               }
                               )
-
-                    // if (resultType === 'individual') {
-                    //           fetch('https://bteb.iqbalhasan.dev/api/bteb/get-result/individual', {
-                    //                     method: 'POST',
-                    //                     headers: {
-                    //                               'Accept': 'application/json',
-                    //                               'Content-Type': 'application/json'
-                    //                     },
-                    //                     body: JSON.stringify({
-                    //                               roll: roll,
-                    //                               semester: semester
-                    //                     })
-                    //           })
-                    //                     .then(res => res.json())
-                    //                     .then(data => {
-                    //                               setFinalResult(data?.data);
-                    //                               if (data?.data === null) {
-                    //                                         Swal.fire({
-                    //                                                   title: 'Oops!',
-                    //                                                   text: 'Result is not published yet!',
-                    //                                                   icon: 'error',
-                    //                                                   confirmButtonText: 'OK'
-                    //                                         })
-                    //                               }
-                    //                     }
-                    //                     )
-                    // }
-
-                    // if (resultType === 'group') {
-                    //           fetch('https://bteb.biplophossain.me/api/bteb/get-result/group', {
-                    //                     method: 'POST',
-                    //                     headers: {
-                    //                               'Accept': 'application/json',
-                    //                               'Content-Type': 'application/json'
-                    //                     },
-                    //                     body: JSON.stringify({
-                    //                               roll_from: rollFrom,
-                    //                               roll_to: rollTo,
-                    //                               semester: semester
-                    //                     })
-                    //           })
-                    //                     .then(res => res.json())
-                    //                     .then(data => {
-                    //                               setGroupResult(data?.data);
-                    //                               if (data?.data === null) {
-                    //                                         Swal.fire({
-                    //                                                   title: 'Oops!',
-                    //                                                   text: 'Result is not published yet!',
-                    //                                                   icon: 'error',
-                    //                                                   confirmButtonText: 'OK'
-                    //                                         })
-                    //                               }
-                    //                     }
-                    //                     )
-                    // }
           }
 
           const [boardError, setBoardError] = useState("");
@@ -142,273 +90,131 @@ export default function ResultForm() {
           }
 
           return (
-                    <div ref={resultSheet}>
-                              <div className='flex flex-col justify-center items-center py-6 md:py-12'>
-                                        <div className='relative w-full md:w-10/12 max-w-4xl md:shadow-md rounded-xl md:py-6'>
+                    <>
+                              <div className='flex justify-center items-center py-6 md:py-12 w-full'>
+                                        <div className='w-full md:w-10/12 max-w-4xl md:shadow-md rounded-xl py-6 md:py-126'>
                                                   <figure><img src={Header} alt="header" /></figure>
                                                   <div className="card-body">
-                                                            {/* {
-                                                                      finalResult?.id ? (<></>) : (<div className="card-actions justify-end">
-                                                                                <button className={`btn text-white font-bold duration-300 ${resultType === 'individual' ? 'btn-primary' : 'btn-primary btn-outline'}`} onClick={e => setResultType("individual")}>Individual Result</button>
-                                                                                <button className={`btn text-white font-bold duration-300 ${resultType === 'group' ? 'btn-primary' : 'btn-primary btn-outline'}`} onClick={e => setResultType("group")}>Group Result</button>
-                                                                      </div>)
-                                                            } */}
-
                                                             {
-                                                                      finalResult?.id && (
+                                                                      finalResult?.roll && (
                                                                                 <div className="card-actions justify-end">
-                                                                                          <button className="btn btn-xs border-[#008000] bg-[#008000] hover:bg-[#008000] hover:border-[#008000] text-white font-bold" onClick={windowReload}>Search Again</button>
-                                                                                          <ReactToPrint
-                                                                                                    trigger={() => (
-                                                                                                              <button className="btn btn-xs border-[#008000] bg-[#008000] hover:bg-[#008000] hover:border-[#008000] text-white font-bold">Download as a pdf</button>
-                                                                                                    )}
-                                                                                                    content={() => resultSheet.current}
-                                                                                          />
+                                                                                          <button className="btn btn-xs md:btn-sm border-[#008000] bg-[#008000] hover:bg-[#008000] hover:border-[#008000] text-white font-bold" onClick={searchAgain}>Search Again</button>
                                                                                 </div>
                                                                       )
                                                             }
 
-                                                            <div>
-                                                                      {
-                                                                                finalResult?.id ? (
-                                                                                          finalResult?.grade === "F" ? (
-                                                                                                    <div className='border-2 p-3 rounded-md mt-6 flex flex-col justify-center items-center'>
-                                                                                                              <figure><img src={Fail} className="w-36" alt="" /></figure>
-                                                                                                              <h1 className='text-xl font-semibold text-center text-error'>Oops, You Failed!</h1>
-                                                                                                              <p className='text-center text-semibold text-gray-500 mt-3'>Your Roll: <span className='font-bold'>{finalResult?.roll}</span></p>
-                                                                                                              <p className='text-center text-semibold text-gray-500'>Failed Subjects: <span className='font-bold'>{finalResult?.failed_subjects}</span></p>
-                                                                                                              <p className='text-center text-semibold text-gray-500'>Semester: <span className='font-bold'>{finalResult?.semester}</span></p>
-                                                                                                              <p className='text-center text-semibold text-gray-500'>Session: <span className='font-bold'>{finalResult?.session}</span></p>
-                                                                                                    </div>
-                                                                                          ) : (
-                                                                                                    <div className='border-2 p-3 rounded-md mt-6 flex flex-col justify-center items-center'>
-                                                                                                              <figure><img src={Pass} className="w-36" alt="" /></figure>
-                                                                                                              <h1 className='text-xl font-semibold text-center text-[#008000]'>Congratulations, You Passed!</h1>
-                                                                                                              <p className='text-center text-semibold text-gray-500 mt-3'>Your Roll: <span className='font-bold'>{finalResult?.roll}</span></p>
-                                                                                                              <p className='text-center text-semibold text-gray-500'>Your Got: <span className='font-bold'>{finalResult?.point} ({finalResult?.grade})</span></p>
-                                                                                                              <p className='text-center text-semibold text-gray-500'>Semester: <span className='font-bold'>{finalResult?.semester}</span></p>
-                                                                                                              <p className='text-center text-semibold text-gray-500'>Session: <span className='font-bold'>{finalResult?.session}</span></p>
-                                                                                                    </div>
-                                                                                          )
-                                                                                ) :
-                                                                                          (
+                                                            {
+                                                                      loading ? (
+                                                                                <Loading />
+                                                                      ) : (
+                                                                                <div>
+                                                                                          {
+                                                                                                    finalResult?.roll ? (
+                                                                                                              <div className='flex flex-col justify-center items-center py-12'>
+                                                                                                                        <h1 className='text-center font-bold text-2xl'>{finalResult?.roll}</h1>
+                                                                                                                        <p className='text-center text-lg'>{finalResult?.exam} ({finalResult?.regulation})</p>
+                                                                                                                        <p className='text-center text-lg'>{finalResult?.institute?.name}, {finalResult?.institute?.district}</p>
 
-                                                                                                    <form onSubmit={handleResult} className='border-2 p-3 rounded-md mt-6'>
-
-                                                                                                              <div className="name border rounded p-3 relative mt-10 w-full">
-                                                                                                                        <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
-                                                                                                                                  <h3 className="text-xs font-poppins">Select Semester</h3>
+                                                                                                                        <div className='rounded-md w-full md:w-1/2 mt-12 gap-6 flex flex-col'>
+                                                                                                                                  {
+                                                                                                                                            finalResult?.results?.map((result: any, index: number) => (
+                                                                                                                                                      <div key={index} className='py-6 glass rounded-xl'>
+                                                                                                                                                                <div className='flex justify-between items-between gap-4'>
+                                                                                                                                                                          <p className='text-center text-lg'>{result?.semester}th {" "}
+                                                                                                                                                                                    {result?.exam_results[0]?.reffereds ? (
+                                                                                                                                                                                              result?.exam_results[0]?.reffereds[0]?.passed === false ? `⚠ ${result?.exam_results[0]?.reffereds?.length} subject` : "✅ Passed"
+                                                                                                                                                                                    ) : "✅ Passed"
+                                                                                                                                                                                    }
+                                                                                                                                                                          </p>
+                                                                                                                                                                          <p className='text-center text-lg'>{date(result?.exam_results[0]?.date?.slice(0, 10))}</p>
+                                                                                                                                                                </div>
+                                                                                                                                                                {result?.exam_results[0]?.cgpa &&
+                                                                                                                                                                          <span className='flex flex-col justify-center items-center'>
+                                                                                                                                                                                    <p className='text-center mt-7'>CGPA</p>
+                                                                                                                                                                                    <p className='text-center text-3xl text-[#008000] font-black'>{result?.exam_results[0]?.cgpa}</p>
+                                                                                                                                                                          </span>
+                                                                                                                                                                }
+                                                                                                                                                                {result?.exam_results[0]?.gpa && <p className='text-center text-3xl mt-7 text-[#008000] font-black'>{result?.exam_results[0]?.gpa}</p>}
+                                                                                                                                                                <div className='flex flex-col gap-3 mt-4'>
+                                                                                                                                                                          {
+                                                                                                                                                                                    result?.exam_results[0]?.reffereds?.map((reffered: any, index: number) => (
+                                                                                                                                                                                              <div className={`flex justify-between text-sm md:text-md ${reffered?.passed === false && "text-red-500"}`} key={index}>
+                                                                                                                                                                                                        <p className='text-center'>{reffered?.subject_code}</p>
+                                                                                                                                                                                                        <p className='text-center' >{reffered?.subject_name}</p>
+                                                                                                                                                                                                        {reffered?.reffered_type === "T" && <small className='text-center pr-3'><small className="badge badge-outline badge-xs p-2">Theory</small></small>}
+                                                                                                                                                                                              </div>
+                                                                                                                                                                                    ))
+                                                                                                                                                                          }
+                                                                                                                                                                </div>
+                                                                                                                                                      </div>
+                                                                                                                                            ))
+                                                                                                                                  }
                                                                                                                         </div>
-                                                                                                                        <div className="input-group flex items-center my-2 border p-3 rounded-md mt-2">
-                                                                                                                                  <div className="icon">
-                                                                                                                                            <i className="bx bx-detail"></i>
+                                                                                                              </div>
+                                                                                                    ) : (
+                                                                                                              <form onSubmit={handleResult} className='mt-6 w-full'>
+
+                                                                                                                        <div className="name border rounded p-3 relative mt-10 w-full">
+                                                                                                                                  <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
+                                                                                                                                            <h3 className="text-xs font-poppins">Select Regulation</h3>
                                                                                                                                   </div>
-                                                                                                                                  <select
-                                                                                                                                            name='semester'
-                                                                                                                                            className="select outline-none w-full"
-                                                                                                                                            required
-                                                                                                                                  >
-                                                                                                                                            <option disabled selected>
-                                                                                                                                                      Select Semester
-                                                                                                                                            </option>
-                                                                                                                                            <option>1st Semester</option>
-                                                                                                                                            <option>2nd Semester</option>
-                                                                                                                                            <option>3rd Semester</option>
-                                                                                                                                            <option>4th Semester</option>
-                                                                                                                                            <option>5th Semester</option>
-                                                                                                                                            <option>6th Semester</option>
-                                                                                                                                            <option>7th Semester</option>
-                                                                                                                                  </select>
-                                                                                                                        </div>
-                                                                                                              </div>
-
-                                                                                                              <div className="name border rounded p-3 relative mt-10">
-                                                                                                                        <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
-                                                                                                                                  <h3 className="text-xs font-poppins">Roll No</h3>
-                                                                                                                        </div>
-                                                                                                                        <div className={`input-group flex items-center my-2 border p-3 rounded-md mt-2 ${boardError && "border-error shadow-error outline-error"}`}>
-                                                                                                                                  <div className="icon">
-                                                                                                                                            <i className="bx bxs-pen"></i>
+                                                                                                                                  <div className="input-group flex items-center my-2 border p-3 rounded-md mt-2">
+                                                                                                                                            <div className="icon">
+                                                                                                                                                      <i className="bx bx-detail"></i>
+                                                                                                                                            </div>
+                                                                                                                                            <select
+                                                                                                                                                      name='reg'
+                                                                                                                                                      className="select focus:outline-none bg-transparent w-full"
+                                                                                                                                                      required
+                                                                                                                                                      defaultValue={2016}
+                                                                                                                                            >
+                                                                                                                                                      <option>2010</option>
+                                                                                                                                                      <option>2016</option>
+                                                                                                                                                      <option>2022</option>
+                                                                                                                                            </select>
                                                                                                                                   </div>
-                                                                                                                                  <input
-                                                                                                                                            type="number"
-                                                                                                                                            name="rollNo"
-                                                                                                                                            onChange={handleBoardRoll}
-                                                                                                                                            className="form-control outline-none pl-4 w-full bg-transparent"
-                                                                                                                                            placeholder="Type Roll No"
-                                                                                                                                            required
-                                                                                                                                  />
                                                                                                                         </div>
-                                                                                                                        {boardError && (
-                                                                                                                                  <small className="flex flex-col pt-2 text-error">
-                                                                                                                                            {boardError}
-                                                                                                                                  </small>
-                                                                                                                        )}
-                                                                                                              </div>
 
-                                                                                                              <div className="modal-action">
-                                                                                                                        <button className={`btn btn-primary text-white flex gap-2`} type="submit">
-                                                                                                                                  <i className="bx bx-id-card text-lg"></i> View Result
-                                                                                                                        </button>
+                                                                                                                        <div className="name border rounded p-3 relative mt-10">
+                                                                                                                                  <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
+                                                                                                                                            <h3 className="text-xs font-poppins">Roll Number</h3>
+                                                                                                                                  </div>
+                                                                                                                                  <div className={`input-group flex items-center my-2 border p-3 rounded-md mt-2 ${boardError && "border-error shadow-error outline-error"}`}>
+                                                                                                                                            <div className="icon">
+                                                                                                                                                      <i className="bx bxs-pen"></i>
+                                                                                                                                            </div>
+                                                                                                                                            <input
+                                                                                                                                                      type="number"
+                                                                                                                                                      name="rollNo"
+                                                                                                                                                      onChange={handleBoardRoll}
+                                                                                                                                                      className="form-control outline-none pl-4 w-full bg-transparent"
+                                                                                                                                                      placeholder="Type Roll Number"
+                                                                                                                                                      required
+                                                                                                                                            />
+                                                                                                                                  </div>
+                                                                                                                                  {boardError && (
+                                                                                                                                            <small className="flex flex-col pt-2 text-error">
+                                                                                                                                                      {boardError}
+                                                                                                                                            </small>
+                                                                                                                                  )}
+                                                                                                                        </div>
 
-                                                                                                              </div>
+                                                                                                                        <div className="modal-action">
+                                                                                                                                  <button className={`btn btn-primary text-white flex gap-2 ${boardError && "btn-disabled"}`} type="submit">
+                                                                                                                                            <i className="bx bx-id-card text-lg"></i> View Result
+                                                                                                                                  </button>
 
-                                                                                                    </form>
+                                                                                                                        </div>
 
-                                                                                                    // <span>
-                                                                                                    //           {
-                                                                                                    //                     resultType === "individual" && (
-                                                                                                    //                               <form onSubmit={handleResult} className='border-2 p-3 rounded-md mt-6'>
-
-                                                                                                    //                                         <div className="name border rounded p-3 relative mt-10 w-full">
-                                                                                                    //                                                   <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
-                                                                                                    //                                                             <h3 className="text-xs font-poppins">Select Semester</h3>
-                                                                                                    //                                                   </div>
-                                                                                                    //                                                   <div className="input-group flex items-center my-2 border p-3 rounded-md mt-2">
-                                                                                                    //                                                             <div className="icon">
-                                                                                                    //                                                                       <i className="bx bx-detail"></i>
-                                                                                                    //                                                             </div>
-                                                                                                    //                                                             <select
-                                                                                                    //                                                                       name='semester'
-                                                                                                    //                                                                       className="select outline-none w-full"
-                                                                                                    //                                                                       required
-                                                                                                    //                                                             >
-                                                                                                    //                                                                       <option disabled selected>
-                                                                                                    //                                                                                 Select Semester
-                                                                                                    //                                                                       </option>
-                                                                                                    //                                                                       <option>5th</option>
-                                                                                                    //                                                                       <option>7th</option>
-                                                                                                    //                                                             </select>
-                                                                                                    //                                                   </div>
-                                                                                                    //                                         </div>
-
-                                                                                                    //                                         <div className="name border rounded p-3 relative mt-10">
-                                                                                                    //                                                   <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
-                                                                                                    //                                                             <h3 className="text-xs font-poppins">Roll No</h3>
-                                                                                                    //                                                   </div>
-                                                                                                    //                                                   <div className={`input-group flex items-center my-2 border p-3 rounded-md mt-2 ${boardError && "border-error shadow-error outline-error"}`}>
-                                                                                                    //                                                             <div className="icon">
-                                                                                                    //                                                                       <i className="bx bxs-pen"></i>
-                                                                                                    //                                                             </div>
-                                                                                                    //                                                             <input
-                                                                                                    //                                                                       type="number"
-                                                                                                    //                                                                       name="rollNo"
-                                                                                                    //                                                                       onChange={handleBoardRoll}
-                                                                                                    //                                                                       className="form-control outline-none pl-4 w-full bg-transparent"
-                                                                                                    //                                                                       placeholder="Type Roll No"
-                                                                                                    //                                                                       required
-                                                                                                    //                                                             />
-                                                                                                    //                                                   </div>
-                                                                                                    //                                                   {boardError && (
-                                                                                                    //                                                             <small className="flex flex-col pt-2 text-error">
-                                                                                                    //                                                                       {boardError}
-                                                                                                    //                                                             </small>
-                                                                                                    //                                                   )}
-                                                                                                    //                                         </div>
-
-                                                                                                    //                                         <div className="modal-action">
-                                                                                                    //                                                   <button className={`btn btn-primary text-white flex gap-2`} type="submit">
-                                                                                                    //                                                             <i className="bx bx-id-card text-lg"></i> View Result
-                                                                                                    //                                                   </button>
-
-                                                                                                    //                                         </div>
-
-                                                                                                    //                               </form>
-                                                                                                    //                     )
-                                                                                                    //           }
-
-                                                                                                    //           {
-                                                                                                    //                     resultType === "group" && (
-                                                                                                    //                               <form onSubmit={handleResult} className='border-2 p-3 rounded-md mt-6'>
-
-                                                                                                    //                                         <div className="name border rounded p-3 relative mt-10 w-full">
-                                                                                                    //                                                   <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
-                                                                                                    //                                                             <h3 className="text-xs font-poppins">Select Semester</h3>
-                                                                                                    //                                                   </div>
-                                                                                                    //                                                   <div className="input-group flex items-center my-2 border p-3 rounded-md mt-2">
-                                                                                                    //                                                             <div className="icon">
-                                                                                                    //                                                                       <i className="bx bx-detail"></i>
-                                                                                                    //                                                             </div>
-                                                                                                    //                                                             <select
-                                                                                                    //                                                                       name='semester'
-                                                                                                    //                                                                       className="select outline-none w-full"
-                                                                                                    //                                                                       required
-                                                                                                    //                                                             >
-                                                                                                    //                                                                       <option disabled selected>
-                                                                                                    //                                                                                 Select Semester
-                                                                                                    //                                                                       </option>
-                                                                                                    //                                                                       <option>4th</option>
-                                                                                                    //                                                                       <option>5th</option>
-                                                                                                    //                                                                       <option>7th</option>
-                                                                                                    //                                                             </select>
-                                                                                                    //                                                   </div>
-                                                                                                    //                                         </div>
-
-                                                                                                    //                                         <div className="name border rounded p-3 relative mt-10">
-                                                                                                    //                                                   <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
-                                                                                                    //                                                             <h3 className="text-xs font-poppins">Roll From</h3>
-                                                                                                    //                                                   </div>
-                                                                                                    //                                                   <div className={`input-group flex items-center my-2 border p-3 rounded-md mt-2 ${boardError && "border-error shadow-error outline-error"}`}>
-                                                                                                    //                                                             <div className="icon">
-                                                                                                    //                                                                       <i className="bx bxs-pen"></i>
-                                                                                                    //                                                             </div>
-                                                                                                    //                                                             <input
-                                                                                                    //                                                                       type="number"
-                                                                                                    //                                                                       name="roll_from"
-                                                                                                    //                                                                       onChange={handleBoardRoll}
-                                                                                                    //                                                                       className="form-control outline-none pl-4 w-full bg-transparent"
-                                                                                                    //                                                                       placeholder="Type Roll No From"
-                                                                                                    //                                                                       required
-                                                                                                    //                                                             />
-                                                                                                    //                                                   </div>
-                                                                                                    //                                                   {boardError && (
-                                                                                                    //                                                             <small className="flex flex-col pt-2 text-error">
-                                                                                                    //                                                                       {boardError}
-                                                                                                    //                                                             </small>
-                                                                                                    //                                                   )}
-                                                                                                    //                                         </div>
-
-                                                                                                    //                                         <div className="name border rounded p-3 relative mt-10">
-                                                                                                    //                                                   <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
-                                                                                                    //                                                             <h3 className="text-xs font-poppins">Roll To</h3>
-                                                                                                    //                                                   </div>
-                                                                                                    //                                                   <div className={`input-group flex items-center my-2 border p-3 rounded-md mt-2 ${boardError && "border-error shadow-error outline-error"}`}>
-                                                                                                    //                                                             <div className="icon">
-                                                                                                    //                                                                       <i className="bx bxs-pen"></i>
-                                                                                                    //                                                             </div>
-                                                                                                    //                                                             <input
-                                                                                                    //                                                                       type="number"
-                                                                                                    //                                                                       name="roll_to"
-                                                                                                    //                                                                       onChange={handleBoardRoll}
-                                                                                                    //                                                                       className="form-control outline-none pl-4 w-full bg-transparent"
-                                                                                                    //                                                                       placeholder="Type Roll No To"
-                                                                                                    //                                                                       required
-                                                                                                    //                                                             />
-                                                                                                    //                                                   </div>
-                                                                                                    //                                                   {boardError && (
-                                                                                                    //                                                             <small className="flex flex-col pt-2 text-error">
-                                                                                                    //                                                                       {boardError}
-                                                                                                    //                                                             </small>
-                                                                                                    //                                                   )}
-                                                                                                    //                                         </div>
-
-                                                                                                    //                                         <div className="modal-action">
-                                                                                                    //                                                   <button className={`btn btn-primary text-white flex gap-2`} type="submit">
-                                                                                                    //                                                             <i className="bx bx-id-card text-lg"></i> View Result
-                                                                                                    //                                                   </button>
-
-                                                                                                    //                                         </div>
-
-                                                                                                    //                               </form>
-                                                                                                    //                     )
-                                                                                                    //           }
-                                                                                                    // </span>
-                                                                                          )
-                                                                      }
-                                                            </div>
+                                                                                                              </form>
+                                                                                                    )
+                                                                                          }
+                                                                                </div>
+                                                                      )
+                                                            }
 
                                                             <div className='mt-6'>
-                                                                      <small className='text-sm'>
+                                                                      <small className='text-xs'>
                                                                                 <span className='font-semibold'>Note:</span> Results are displayed using pdf searching algorithm. The result is shown by searching from the PDF published by "BTEB". <span className='font-semibold'>The developer or this web site is not responsible for any misinformation.</span>
                                                                       </small>
                                                             </div>
@@ -416,6 +222,6 @@ export default function ResultForm() {
                                         </div>
                               </div>
                               <Footer />
-                    </div>
+                    </>
           )
 }
