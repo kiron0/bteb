@@ -6,10 +6,10 @@ import Footer from '../shared/Footer';
 import { toast } from 'react-hot-toast';
 import Loading from '../components/Loading';
 import { AUTH_KEY, BASE_API } from '../config';
-import IndividualResult from './IndividualResult';
+import GroupResultTab from './GroupResultTab';
 import useScrollToTop from '../hooks/useScrollToTop';
 
-export default function ResultForm() {
+export default function GroupForm() {
           useScrollToTop();
           const [finalResult, setFinalResult] = useState({} as any);
           const [loading, setLoading] = useState<boolean>(false);
@@ -28,13 +28,15 @@ export default function ResultForm() {
                     const form = e.target as typeof e.target & {
                               rollNo: { value: string };
                               reg: { value: string };
+                              sem: { value: string };
                     };
 
                     const roll = form.rollNo?.value;
                     const reg = form.reg.value;
+                    const sem = form.sem.value.slice(0, 1);
 
                     if (roll === "" || reg === "") {
-                              toast.error('Roll Number is required..!', {
+                              toast.error('Roll Numbers are required..!', {
                                         style: {
                                                   padding: '16px',
                                                   color: '#000',
@@ -47,7 +49,7 @@ export default function ResultForm() {
                               return;
                     }
 
-                    fetch(`${BASE_API}/results?roll=${roll}&reg=${reg}&key=${AUTH_KEY}`, {
+                    fetch(`${BASE_API}/resultsGroup?sem=${sem}&roll=${roll}&reg=${reg}&key=${AUTH_KEY}`, {
                               method: 'GET',
                               headers: {
                                         'Accept': 'application/json',
@@ -56,7 +58,7 @@ export default function ResultForm() {
                     })
                               .then(res => res.json())
                               .then(data => {
-                                        if (data.roll === undefined) {
+                                        if (data?.length < 0) {
                                                   Swal.fire({
                                                             title: 'Oops!',
                                                             text: 'Result not found',
@@ -89,20 +91,14 @@ export default function ResultForm() {
 
           const handleBoardRoll = (e: React.ChangeEvent<HTMLInputElement>) => {
                     const boardRoll = e.target.value;
-                    if (boardRoll === "") {
-                              setBoardError("Board Roll is required");
-                    }
-                    else if (!/^[0-9]*$/.test(boardRoll)) {
-                              setBoardError("Roll must be a positive integer");
-                    }
-                    else if (boardRoll.length > 6 || boardRoll.length < 6) {
-                              setBoardError("Roll must be 6 digit");
-                    }
-                    else if (boardRoll === "123456" || boardRoll === "654321" || boardRoll === "987654" || boardRoll === "456789" || boardRoll === "000000" || boardRoll === "111111" || boardRoll === "222222" || boardRoll === "333333" || boardRoll === "444444" || boardRoll === "555555" || boardRoll === "666666" || boardRoll === "777777" || boardRoll === "888888" || boardRoll === "999999") {
-                              setBoardError("Roll is not valid");
-                    }
-                    else {
+                    // validate board roll formate = 921711-921714
+                    const regex = /^([0-9]{6})-([0-9]{6})$/;
+                    if (boardRoll.match(regex)) {
                               setBoardError("");
+                    } else if (!/^[0-9]*$/.test(boardRoll)) {
+                              setBoardError("Roll No must be a positive integer");
+                    } else {
+                              setBoardError("Invalid Board Roll");
                     }
           }
 
@@ -112,23 +108,22 @@ export default function ResultForm() {
                                         <div className='w-full md:w-10/12 max-w-4xl md:glass rounded-xl py-6 md:py-126'>
                                                   <figure><img src={Header} alt="header" /></figure>
                                                   <div className="card-body p-3 md:p-0">
-                                                            <h2 className='text-3xl text-center pt-10 font-semibold'>Individual's Result</h2>
+                                                            <h2 className='text-3xl text-center pt-10 font-semibold'>Group's Result</h2>
                                                             {
-                                                                      finalResult?.roll && (
-                                                                                <div className="card-actions justify-center md:justify-end mt-10 md:mr-12 lg:mr-16 mb-0">
+                                                                      finalResult?.results?.length > 0 && (
+                                                                                <div className="card-actions justify-center md:justify-end mt-10 md:mr-12 lg:mr-16 mb-8">
                                                                                           <button className="btn btn-sm glass text-black" onClick={searchAgain}>Search Again</button>
                                                                                 </div>
                                                                       )
                                                             }
-
                                                             {
                                                                       loading ? (
                                                                                 <Loading />
                                                                       ) : (
                                                                                 <>
                                                                                           {
-                                                                                                    finalResult?.roll ? (
-                                                                                                              <IndividualResult finalResult={finalResult} date={date} />
+                                                                                                    finalResult?.results?.length > 0 ? (
+                                                                                                              <GroupResultTab finalResult={finalResult} date={date} />
                                                                                                     ) : (
                                                                                                               <form onSubmit={handleResult} className='mt-6 w-full md:px-6'>
 
@@ -143,6 +138,7 @@ export default function ResultForm() {
                                                                                                                                             <select
                                                                                                                                                       name='reg'
                                                                                                                                                       className="select focus:outline-none bg-transparent w-full"
+                                                                                                                                                      required
                                                                                                                                                       defaultValue={2022}
                                                                                                                                             >
                                                                                                                                                       <option value={0}>Any</option>
@@ -152,21 +148,46 @@ export default function ResultForm() {
                                                                                                                                             </select>
                                                                                                                                   </div>
                                                                                                                         </div>
+                                                                                                                        <div className="name border rounded p-3 relative mt-10 w-full">
+                                                                                                                                  <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
+                                                                                                                                            <h3 className="text-xs font-poppins">Select Semester</h3>
+                                                                                                                                  </div>
+                                                                                                                                  <div className="input-group flex items-center my-2 border p-3 rounded-md mt-2">
+                                                                                                                                            <div className="icon">
+                                                                                                                                                      <i className="bx bx-detail"></i>
+                                                                                                                                            </div>
+                                                                                                                                            <select
+                                                                                                                                                      name='sem'
+                                                                                                                                                      className="select focus:outline-none bg-transparent w-full"
+                                                                                                                                                      required
+                                                                                                                                                      defaultValue="4th"
+                                                                                                                                            >
+                                                                                                                                                      <option>1st</option>
+                                                                                                                                                      <option>2nd</option>
+                                                                                                                                                      <option>3rd</option>
+                                                                                                                                                      <option>4th</option>
+                                                                                                                                                      <option>5th</option>
+                                                                                                                                                      <option>6th</option>
+                                                                                                                                                      <option>7th</option>
+                                                                                                                                                      <option>8th</option>
+                                                                                                                                            </select>
+                                                                                                                                  </div>
+                                                                                                                        </div>
 
                                                                                                                         <div className="name border rounded p-3 relative mt-10">
                                                                                                                                   <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
-                                                                                                                                            <h3 className="text-xs font-poppins">Roll Number</h3>
+                                                                                                                                            <h3 className="text-xs font-poppins">Roll Numbers</h3>
                                                                                                                                   </div>
                                                                                                                                   <div className={`input-group flex items-center my-2 border p-3 rounded-md mt-2 ${boardError && "border-error shadow-error outline-error"}`}>
                                                                                                                                             <div className="icon">
                                                                                                                                                       <i className="bx bxs-pen"></i>
                                                                                                                                             </div>
                                                                                                                                             <input
-                                                                                                                                                      type="number"
+                                                                                                                                                      type="text"
                                                                                                                                                       name="rollNo"
                                                                                                                                                       onChange={handleBoardRoll}
                                                                                                                                                       className="form-control outline-none pl-4 w-full bg-transparent"
-                                                                                                                                                      placeholder="e.g. 971711"
+                                                                                                                                                      placeholder="e.g. 921711-921714,921716,921723-921726"
                                                                                                                                             />
                                                                                                                                   </div>
                                                                                                                                   {boardError && (
