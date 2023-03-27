@@ -47,11 +47,12 @@ export default function ResultForm() {
                               return;
                     }
 
-                    fetch(`${BASE_API}/results?roll=${roll}&reg=${reg}&key=${AUTH_KEY}`, {
+                    fetch(`${BASE_API}/results?roll=${roll}&reg=${reg}`, {
                               method: 'GET',
                               headers: {
                                         'Accept': 'application/json',
-                                        'Content-Type': 'application/json'
+                                        'Content-Type': 'application/json',
+                                        authorization: `${AUTH_KEY}`
                               },
                     })
                               .then(res => res.json())

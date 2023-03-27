@@ -49,11 +49,12 @@ export default function GroupForm() {
                               return;
                     }
 
-                    fetch(`${BASE_API}/resultsGroup?sem=${sem}&roll=${roll}&reg=${reg}&key=${AUTH_KEY}`, {
+                    fetch(`${BASE_API}/resultsGroup?sem=${sem}&roll=${roll}&reg=${reg}`, {
                               method: 'GET',
                               headers: {
                                         'Accept': 'application/json',
-                                        'Content-Type': 'application/json'
+                                        'Content-Type': 'application/json',
+                                        authorization: `${AUTH_KEY}`
                               },
                     })
                               .then(res => res.json())
