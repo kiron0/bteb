@@ -8,6 +8,9 @@ import Loading from '../components/Loading';
 import { AUTH_KEY, BASE_API } from '../config';
 import GroupResultTab from './GroupResultTab';
 import useScrollToTop from '../hooks/useScrollToTop';
+import { TbReload } from 'react-icons/tb';
+
+const Fade = require("react-reveal/Fade");
 
 export default function GroupForm() {
           useScrollToTop();
@@ -104,7 +107,7 @@ export default function GroupForm() {
           }
 
           return (
-                    <>
+                    <Fade top distance="20px">
                               <div className='flex justify-center items-center py-6 md:py-12 w-full'>
                                         <div className='w-full md:w-10/12 max-w-4xl md:glass rounded-xl py-6 md:py-126'>
                                                   <figure><img src={Header} alt="header" /></figure>
@@ -112,8 +115,8 @@ export default function GroupForm() {
                                                             <h2 className='text-3xl text-center pt-10 font-semibold'>Group's Result</h2>
                                                             {
                                                                       finalResult?.results?.length > 0 && (
-                                                                                <div className="card-actions justify-center md:justify-end mt-10 md:mr-12 lg:mr-16 mb-8">
-                                                                                          <button className="btn btn-sm glass text-black" onClick={searchAgain}>Search Again</button>
+                                                                                <div className="card-actions justify-center my-10">
+                                                                                          <button className="btn btn-sm glass text-black flex items-center gap-1" onClick={searchAgain}><TbReload className='text-lg' /> Search Again</button>
                                                                                 </div>
                                                                       )
                                                             }
@@ -199,7 +202,7 @@ export default function GroupForm() {
                                                                                                                         </div>
 
                                                                                                                         <div className="modal-action">
-                                                                                                                                  <button className={`btn btn-sm md:btn-md btn-primary text-white flex gap-2 ${boardError && "btn-disabled"}`} type="submit">
+                                                                                                                                  <button className={`btn btn-sm md:btn-md glass text-black flex gap-2 ${boardError && "btn-disabled text-gray-400"}`} type="submit">
                                                                                                                                             <i className="bx bx-id-card text-lg"></i> View Result
                                                                                                                                   </button>
 
@@ -221,6 +224,6 @@ export default function GroupForm() {
                                         </div>
                               </div>
                               <Footer />
-                    </>
+                    </Fade>
           )
 }

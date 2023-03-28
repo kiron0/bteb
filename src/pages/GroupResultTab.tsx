@@ -6,7 +6,6 @@ type Props = {
 }
 
 export default function GroupResultTab({ finalResult, date }: Props) {
-          // console.log(finalResult)
           return (
                     <div>
                               <div className='flex flex-col justify-center items-center'>
@@ -32,7 +31,8 @@ export default function GroupResultTab({ finalResult, date }: Props) {
                                                                                           {result?.roll && <td>{result?.roll}</td>}
                                                                                           {result?.result?.gpa ? <td>{result?.result.gpa}</td> : result?.result?.reffereds && <td className='text-red-500'>{result?.result?.reffereds?.length} referred</td>}
                                                                                 </tr>
-                                                                      ))}
+                                                                      ))
+                                                            }
                                                   </tbody>
                                         </table>
                               </div>

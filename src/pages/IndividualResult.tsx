@@ -17,6 +17,13 @@ export default function IndividualResult({ finalResult, date }: Props) {
 
   const getRefferedSubjects = finalResult?.results?.map((result: any) => result?.exam_results[0]?.reffereds)
 
+  const rightSerial = (serial: number) => {
+    if (serial === 1) return `${serial}st`
+    if (serial === 2) return `${serial}nd`
+    if (serial === 3) return `${serial}rd`
+    return `${serial}th`
+  }
+
   return (
     <div className='flex flex-col justify-center items-center py-12'>
       <h1 className='text-center font-bold text-2xl'>{finalResult?.roll}</h1>
@@ -32,7 +39,7 @@ export default function IndividualResult({ finalResult, date }: Props) {
           finalResult?.results?.map((result: any, index: number) => (
             <div key={index} className='py-6 glass rounded-xl'>
               <div className='flex justify-between items-between gap-4'>
-                <p className='text-center text-lg'>{result?.semester}th {" "}
+                <p className='text-center text-lg'>{rightSerial(result?.semester)} {" "}
                   <span className='text-red-500'>
                     {result?.exam_results[0]?.reffereds ? (
                       result?.exam_results[0]?.reffereds[0]?.passed === false ? `⚠ ${getFailedSubjects(result?.semester)} subject yet to pass` : <span className='text-[#333]'>

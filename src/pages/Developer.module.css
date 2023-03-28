@@ -1,0 +1,97 @@
+.socialLinks .website {
+  background: linear-gradient(45deg, #333333, #626b73);
+  box-shadow: 0 4px 30px rgba(63, 65, 67, 0.6);
+}
+
+.socialLinks .googleDev {
+  background: linear-gradient(45deg, #ffffff, #ffffff);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.socialLinks .facebook {
+  background: linear-gradient(45deg, #3b5998, #0078d7);
+  box-shadow: 0 4px 30px rgba(43, 98, 169, 0.5);
+}
+
+.socialLinks .messenger {
+  background: linear-gradient(45deg, #0695ff, #a334fa, #ff6968);
+  box-shadow: 0 4px 30px rgba(255, 105, 104, 0.5);
+}
+
+.socialLinks .instagram {
+  background: linear-gradient(
+    45deg,
+    #5851db,
+    #833ab4,
+    #c13584,
+    #e1306c,
+    #fd1d1d
+  );
+  box-shadow: 0 4px 30px rgba(120, 64, 190, 0.6);
+}
+
+.socialLinks .twitter {
+  background: linear-gradient(45deg, #1da1f2, #1da1f2);
+  box-shadow: 0 4px 30px rgba(29, 161, 242, 0.5);
+}
+.socialLinks .linkedin {
+  background: linear-gradient(45deg, #0077b5, #0077b5);
+  box-shadow: 0 4px 30px rgba(0, 119, 181, 0.5);
+}
+.socialLinks .youtube {
+  background: linear-gradient(45deg, #ff0000, #ff0000);
+  box-shadow: 0 4px 30px rgba(255, 0, 0, 0.5);
+}
+.socialLinks .github {
+  background: linear-gradient(45deg, #333333, #626b73);
+  box-shadow: 0 4px 30px rgba(63, 65, 67, 0.6);
+}
+
+.socialLinks .telegram {
+  background: linear-gradient(45deg, #0088cc, #0088cc);
+  box-shadow: 0 4px 30px rgba(0, 136, 204, 0.5);
+}
+
+.socialLinks .whatsapp {
+  background: linear-gradient(45deg, #25d366, #25d366);
+  box-shadow: 0 4px 30px rgba(37, 211, 102, 0.5);
+}
+
+.socialLinks .tiktok {
+  background: linear-gradient(45deg, #00f2ea, #000000, #ff0050);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+.socialLinks .spotify {
+  background: linear-gradient(45deg, #1db954, #1db954);
+  box-shadow: 0 4px 30px rgba(29, 185, 84, 0.5);
+}
+
+.socialLinks .reddit {
+  background: linear-gradient(45deg, #ff4500, #ff4500);
+  box-shadow: 0 4px 30px rgba(255, 69, 0, 0.5);
+}
+.socialLinks .stackoverflow {
+  background: linear-gradient(45deg, #f48024, #f48024);
+  box-shadow: 0 4px 30px rgba(244, 128, 36, 0.5);
+}
+
+.socialLinks .imdb {
+  background: linear-gradient(45deg, #f5c518, #f5c518);
+  box-shadow: 0 4px 30px rgba(245, 197, 24, 0.5);
+}
+
+.socialLinks .pinterest {
+  background: linear-gradient(45deg, #bd081c, #bd081c);
+  box-shadow: 0 4px 30px rgba(189, 8, 28, 0.5);
+}
+
+.socialLinks .blogspot {
+  background: linear-gradient(45deg, #f57d00, #f57d00);
+  box-shadow: 0 4px 30px rgba(245, 125, 0, 0.5);
+}
+
+.socialLinks .google {
+  background: linear-gradient(45deg, #ffffff, #ffffff);
+  box-shadow: 0 4px 30px rgba(151, 149, 149, 0.5);
+}
