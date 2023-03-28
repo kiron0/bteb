@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import Root from './Layouts/Root';
-import NotFound from './shared/NotFound';
-import GroupResult from './pages/GroupResult';
-import Preloader from './shared/Preloader';
-import Developer from './pages/Developer';
+import NotFound from './shared/NotFound/NotFound';
+import GroupResult from './pages/GroupResult/GroupResult';
+import Preloader from './shared/Preloader/Preloader';
+import Developer from './pages/Developer/Developer';
 
 const router = createBrowserRouter(
   [

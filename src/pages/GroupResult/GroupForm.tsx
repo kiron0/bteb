@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
-import Header from '../assets/header-img.png';
+import Header from '../../assets/header-img.png';
 import Swal from 'sweetalert2';
 import moment from 'moment';
-import Footer from '../shared/Footer';
+import Footer from '../../shared/Footer/Footer';
 import { toast } from 'react-hot-toast';
-import Loading from '../components/Loading';
-import { AUTH_KEY, BASE_API } from '../config';
+import Loading from '../../components/Loading';
+import { AUTH_KEY, BASE_API } from '../../config';
 import GroupResultTab from './GroupResultTab';
-import useScrollToTop from '../hooks/useScrollToTop';
+import useScrollToTop from '../../hooks/useScrollToTop';
 import { TbReload } from 'react-icons/tb';
 
 const Fade = require("react-reveal/Fade");

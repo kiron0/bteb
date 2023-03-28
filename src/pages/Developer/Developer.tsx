@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import Avatar from '../assets/me.jpg';
+import Avatar from '../../assets/me.jpg';
 import styles from './Developer.module.css'
 
 const Fade = require("react-reveal/Fade");
