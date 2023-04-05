@@ -6,6 +6,7 @@ import NotFound from './shared/NotFound/NotFound';
 import GroupResult from './pages/GroupResult/GroupResult';
 import Preloader from './shared/Preloader/Preloader';
 import Developer from './pages/Developer/Developer';
+import CGPACalculator from './pages/CGPACalculator/CGPACalculator';
 
 const router = createBrowserRouter(
   [
@@ -16,6 +17,10 @@ const router = createBrowserRouter(
     {
       path: '/group',
       element: <GroupResult />,
+    },
+    {
+      path: '/cgpaCalc',
+      element: <CGPACalculator />,
     },
     {
       path: '/dev',

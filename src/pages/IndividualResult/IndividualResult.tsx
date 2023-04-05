@@ -61,7 +61,12 @@ export default function IndividualResult({ finalResult, date }: Props) {
                   <p className='text-center text-3xl text-[#008000] font-black'>{result?.exam_results[0]?.cgpa}</p>
                 </span>
               }
-              {result?.exam_results[0]?.gpa && <p className='text-center text-3xl mt-7 text-[#008000] font-black'>{result?.exam_results[0]?.gpa}</p>}
+              {result?.exam_results[0]?.gpa && (
+                <span className='flex flex-col justify-center items-center'>
+                  <p className='text-center mt-7'>GPA</p>
+                  <p className='text-center text-3xl text-[#008000] font-black'>{result?.exam_results[0]?.gpa}</p>
+                </span>
+              )}
               <div className='flex flex-col gap-3 mt-4'>
                 {
                   result?.exam_results[0]?.reffereds?.map((reffered: any, index: number) => (

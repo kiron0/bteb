@@ -16,6 +16,28 @@ export default function ResultForm() {
           useScrollToTop();
           const [finalResult, setFinalResult] = useState({} as any);
           const [loading, setLoading] = useState<boolean>(false);
+          const [diplomaInEng, setDiplomaInEng] = useState([
+                    { name: 'Any', value: '0' },
+                    { name: '2010', value: '2010' },
+                    { name: '2016', value: '2016' },
+                    { name: '2022', value: '2022' },
+          ]);
+
+          const handleExamChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+                    const exam = e.target.value;
+                    if (exam === 'Diploma In Engineering') {
+                              setDiplomaInEng(
+                                        [
+                                                  { name: 'Any', value: '0' },
+                                                  { name: '2010', value: '2010' },
+                                                  { name: '2016', value: '2016' },
+                                                  { name: '2022', value: '2022' },
+                                        ]
+                              );
+                    } else {
+                              setDiplomaInEng([]);
+                    }
+          }
 
           const date = (date: string) => {
                     return moment(date).format('Do MMM YYYY');
@@ -31,12 +53,14 @@ export default function ResultForm() {
                     const form = e.target as typeof e.target & {
                               rollNo: { value: string };
                               reg: { value: string };
+                              exam: { value: string };
                     };
 
                     const roll = form.rollNo?.value;
                     const reg = form.reg.value;
+                    const exam = form.exam.value.toUpperCase().split(' ').join('+');
 
-                    if (roll === "" || reg === "") {
+                    if (roll === "") {
                               toast.error('Roll Number is required..!', {
                                         style: {
                                                   padding: '16px',
@@ -50,7 +74,7 @@ export default function ResultForm() {
                               return;
                     }
 
-                    fetch(`${BASE_API}/results?roll=${roll}&reg=${reg}`, {
+                    fetch(`${BASE_API}/results?roll=${roll}&reg=${reg}&exam=${exam}`, {
                               method: 'GET',
                               headers: {
                                         'Accept': 'application/json',
@@ -81,7 +105,7 @@ export default function ResultForm() {
                                                                                 background: '#fff3cd',
                                                                       },
                                                                       duration: 4000,
-                                                                      position: 'bottom-center',
+                                                                      position: 'top-center',
                                                             });
                                                   }
                                         }
@@ -138,6 +162,24 @@ export default function ResultForm() {
 
                                                                                                                         <div className="name border rounded p-3 relative mt-10 w-full">
                                                                                                                                   <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
+                                                                                                                                            <h3 className="text-xs font-poppins">Select Exam</h3>
+                                                                                                                                  </div>
+                                                                                                                                  <div className="input-group flex items-center my-2 border p-3 rounded-md mt-2">
+                                                                                                                                            <div className="icon">
+                                                                                                                                                      <i className="bx bx-detail"></i>
+                                                                                                                                            </div>
+                                                                                                                                            <select
+                                                                                                                                                      name='exam'
+                                                                                                                                                      className="select focus:outline-none bg-transparent w-full"
+                                                                                                                                                      defaultValue="Diploma In Engineering"
+                                                                                                                                                      onChange={handleExamChange}
+                                                                                                                                            >
+                                                                                                                                                      <option>Diploma In Engineering</option>
+                                                                                                                                            </select>
+                                                                                                                                  </div>
+                                                                                                                        </div>
+                                                                                                                        <div className="name border rounded p-3 relative mt-10 w-full">
+                                                                                                                                  <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
                                                                                                                                             <h3 className="text-xs font-poppins">Select Regulation</h3>
                                                                                                                                   </div>
                                                                                                                                   <div className="input-group flex items-center my-2 border p-3 rounded-md mt-2">
@@ -147,12 +189,15 @@ export default function ResultForm() {
                                                                                                                                             <select
                                                                                                                                                       name='reg'
                                                                                                                                                       className="select focus:outline-none bg-transparent w-full"
-                                                                                                                                                      defaultValue={2022}
+                                                                                                                                                      defaultValue="2022"
                                                                                                                                             >
-                                                                                                                                                      <option value={0}>Any</option>
-                                                                                                                                                      <option>2010</option>
-                                                                                                                                                      <option>2016</option>
-                                                                                                                                                      <option>2022</option>
+                                                                                                                                                      {
+                                                                                                                                                                diplomaInEng && (
+                                                                                                                                                                          diplomaInEng.map((reg: any, index: number) => (
+                                                                                                                                                                                    <option key={index} value={reg.value}>{reg.name}</option>
+                                                                                                                                                                          ))
+                                                                                                                                                                )
+                                                                                                                                                      }
                                                                                                                                             </select>
                                                                                                                                   </div>
                                                                                                                         </div>
