@@ -12,7 +12,9 @@ export default function Developer() {
                               <div className='flex flex-col justify-center items-center h-screen'>
                                         <div className='card w-full md:w-2/3 lg:w-1/3 md:glass'>
                                                   <div className='card-body'>
-                                                            <button onClick={() => navigate(-1)} className="flex justify-center items-center gap-1 btn btn-sm mx-auto glass rounded-xl text-black text-md absolute left-2 top-2"><i className="bx bx-arrow-back text-lg"></i>Back</button>
+                                                            <div className='pb-6'>
+                                                                      <button onClick={() => navigate("/")} className="flex justify-center items-center gap-1 btn btn-sm mx-auto glass rounded-xl text-black text-md"><i className="bx bx-arrow-back text-lg"></i>Back</button>
+                                                            </div>
                                                             <Fade top duration={2000} distance="40px">
                                                                       <div className='flex justify-center items-center'>
                                                                                 <div className="avatar">

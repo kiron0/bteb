@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Header from '../../assets/header-img.png';
 import Swal from 'sweetalert2';
 import moment from 'moment';
 import Footer from '../../shared/Footer/Footer';
@@ -110,9 +109,8 @@ export default function GroupForm() {
 
           return (
                     <Fade top distance="20px">
-                              <div className='flex justify-center items-center py-6 md:py-12 w-full'>
-                                        <div className='w-full md:w-10/12 max-w-4xl md:glass rounded-xl py-6 md:py-126'>
-                                                  <figure><img src={Header} alt="header" /></figure>
+                              <div className='flex justify-center items-center md:py-12 w-full'>
+                                        <div className='w-full md:w-10/12 max-w-4xl md:glass rounded-xl pb-6'>
                                                   <div className="card-body p-3 md:p-0">
                                                             <h2 className='text-3xl text-center pt-10 font-semibold'>Group's Result</h2>
                                                             {
@@ -235,8 +233,8 @@ export default function GroupForm() {
                                                             }
 
                                                             <div className='mt-6 md:mx-6'>
-                                                                      <small className='text-xs'>
-                                                                                <span className='font-semibold'>Note:</span> Results are displayed using pdf searching algorithm. The result is shown by searching from the PDF published by "BTEB". <span className='font-semibold'>The developer or this web site is not responsible for any misinformation.</span>
+                                                                      <small className='text-xs select-none'>
+                                                                                <span className='font-bold text-sm'>Note:</span> Results are displayed using pdf searching algorithm. The result is shown by searching from the PDF published by "BTEB". <span className='font-semibold'>The developer or this web site is not responsible for any misinformation.</span>
                                                                       </small>
                                                             </div>
                                                   </div>

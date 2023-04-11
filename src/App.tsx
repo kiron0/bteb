@@ -7,6 +7,8 @@ import GroupResult from './pages/GroupResult/GroupResult';
 import Preloader from './shared/Preloader/Preloader';
 import Developer from './pages/Developer/Developer';
 import CGPACalculator from './pages/CGPACalculator/CGPACalculator';
+import Navbar from './shared/Navbar/Navbar';
+import ResultForm from './pages/IndividualResult/ResultForm';
 
 const router = createBrowserRouter(
   [
@@ -15,7 +17,15 @@ const router = createBrowserRouter(
       element: <Root />,
     },
     {
-      path: '/group',
+      path: '/results',
+      element:
+        <>
+          <Navbar />
+          <ResultForm />
+        </>,
+    },
+    {
+      path: '/group-results',
       element: <GroupResult />,
     },
     {

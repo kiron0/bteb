@@ -1,10 +1,12 @@
 import React from 'react'
 import { toast } from 'react-hot-toast';
 import Swal from 'sweetalert2';
+import useScrollToTop from '../../hooks/useScrollToTop';
 
 const Fade = require("react-reveal/Fade");
 
 export default function CalculatorForm() {
+  useScrollToTop();
 
   const handleCalculate = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -114,7 +116,7 @@ export default function CalculatorForm() {
         <div className='card w-full md:w-2/3 lg:w-1/3 md:glass'>
           <div className='card-body'>
             <div className={`flex flex-col justify-center items-center md:pt-7 select-none text-black`}>
-              <h2 className="text-2xl md:text-3xl font-bold">CGPA Calculator</h2>
+              <h2 className="text-2xl md:text-3xl font-semibold">CGPA Calculator</h2>
               <form onSubmit={handleCalculate} id='cgpaCalc' className='mt-6 w-full md:px-6'>
                 <div className="name border rounded p-3 relative mt-10 w-full">
                   <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
