@@ -34,12 +34,12 @@ export default function GroupForm() {
                               exam: { value: string };
                     };
 
-                    const roll = form.rollNo?.value;
+                    const roll = form.rollNo.value;
                     const reg = form.reg.value;
                     const sem = form.sem.value.slice(0, 1);
                     const exam = form.exam.value.toUpperCase().split(' ').join('+');
 
-                    if (roll === "" || reg === "") {
+                    if (roll === "") {
                               toast.error('Roll Numbers are required..!', {
                                         style: {
                                                   padding: '16px',
@@ -162,7 +162,7 @@ export default function GroupForm() {
                                                                                                                                                       className="select focus:outline-none bg-transparent w-full"
                                                                                                                                                       defaultValue={2022}
                                                                                                                                             >
-                                                                                                                                                      <option value={0}>Any</option>
+                                                                                                                                                      <option value={""}>Any</option>
                                                                                                                                                       <option>2010</option>
                                                                                                                                                       <option>2016</option>
                                                                                                                                                       <option>2022</option>

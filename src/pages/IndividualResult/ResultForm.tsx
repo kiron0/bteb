@@ -16,7 +16,7 @@ export default function ResultForm() {
           const [finalResult, setFinalResult] = useState({} as any);
           const [loading, setLoading] = useState<boolean>(false);
           const [diplomaInEng, setDiplomaInEng] = useState([
-                    { name: 'Any', value: '0' },
+                    { name: 'Any', value: '' },
                     { name: '2010', value: '2010' },
                     { name: '2016', value: '2016' },
                     { name: '2022', value: '2022' },
