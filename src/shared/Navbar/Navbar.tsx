@@ -12,12 +12,12 @@ export default function Navbar() {
                                         }>Home</NavLink>
                               </li>
                               <li className='lg:mr-6 py-2 lg:py-0'>
-                                        <NavLink to="/results" className={({ isActive }) =>
+                                        <NavLink to="/individualResult" className={({ isActive }) =>
                                                   isActive ? "text-white btn btn-primary" : "btn glass text-black"
                                         }>Individual's Result</NavLink>
                               </li>
                               <li className='lg:mr-6 py-2 lg:py-0'>
-                                        <NavLink to="/group-results" className={({ isActive }) =>
+                                        <NavLink to="/groupResults" className={({ isActive }) =>
                                                   isActive ? "text-white btn btn-primary" : "btn glass text-black"
                                         }>Group's Result</NavLink>
                               </li>

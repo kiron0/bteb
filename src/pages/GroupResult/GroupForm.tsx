@@ -37,7 +37,8 @@ export default function GroupForm() {
                     const roll = form.rollNo.value;
                     const reg = form.reg.value;
                     const sem = form.sem.value.slice(0, 1);
-                    const exam = form.exam.value.toUpperCase().split(' ').join('+');
+                    // const exam = form.exam.value.toUpperCase().split(' ').join('+');
+                    const exam = "DIPLOMA+IN+ENGINEERING";
 
                     if (roll === "") {
                               toast.error('Roll Numbers are required..!', {
@@ -131,7 +132,7 @@ export default function GroupForm() {
                                                                                                     ) : (
                                                                                                               <form onSubmit={handleResult} className='mt-6 w-full md:px-6'>
 
-                                                                                                                        <div className="name border rounded p-3 relative mt-10 w-full">
+                                                                                                                        {/* <div className="name border rounded p-3 relative mt-10 w-full">
                                                                                                                                   <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
                                                                                                                                             <h3 className="text-xs font-poppins">Select Exam</h3>
                                                                                                                                   </div>
@@ -147,7 +148,7 @@ export default function GroupForm() {
                                                                                                                                                       <option>Diploma In Engineering</option>
                                                                                                                                             </select>
                                                                                                                                   </div>
-                                                                                                                        </div>
+                                                                                                                        </div> */}
 
                                                                                                                         <div className="name border rounded p-3 relative mt-10 w-full">
                                                                                                                                   <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
@@ -207,6 +208,7 @@ export default function GroupForm() {
                                                                                                                                                       type="text"
                                                                                                                                                       name="rollNo"
                                                                                                                                                       onChange={handleBoardRoll}
+                                                                                                                                                      onKeyDown={(e) => { e.key === 'Enter' && boardError && e.preventDefault() }}
                                                                                                                                                       className="form-control outline-none pl-4 w-full bg-transparent"
                                                                                                                                                       placeholder="e.g. 921711-921714,921716,921723-921726"
                                                                                                                                             />

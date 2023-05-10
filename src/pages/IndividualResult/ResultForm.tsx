@@ -15,28 +15,35 @@ export default function ResultForm() {
           useScrollToTop();
           const [finalResult, setFinalResult] = useState({} as any);
           const [loading, setLoading] = useState<boolean>(false);
-          const [diplomaInEng, setDiplomaInEng] = useState([
+          // const [diplomaInEng, setDiplomaInEng] = useState([
+          //           { name: 'Any', value: '' },
+          //           { name: '2010', value: '2010' },
+          //           { name: '2016', value: '2016' },
+          //           { name: '2022', value: '2022' },
+          // ]);
+
+          const diplomaInEng = [
                     { name: 'Any', value: '' },
                     { name: '2010', value: '2010' },
                     { name: '2016', value: '2016' },
                     { name: '2022', value: '2022' },
-          ]);
+          ]
 
-          const handleExamChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-                    const exam = e.target.value;
-                    if (exam === 'Diploma In Engineering') {
-                              setDiplomaInEng(
-                                        [
-                                                  { name: 'Any', value: '0' },
-                                                  { name: '2010', value: '2010' },
-                                                  { name: '2016', value: '2016' },
-                                                  { name: '2022', value: '2022' },
-                                        ]
-                              );
-                    } else {
-                              setDiplomaInEng([]);
-                    }
-          }
+          // const handleExamChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+          //           const exam = e.target.value;
+          //           if (exam === 'Diploma In Engineering') {
+          //                     setDiplomaInEng(
+          //                               [
+          //                                         { name: 'Any', value: '0' },
+          //                                         { name: '2010', value: '2010' },
+          //                                         { name: '2016', value: '2016' },
+          //                                         { name: '2022', value: '2022' },
+          //                               ]
+          //                     );
+          //           } else {
+          //                     setDiplomaInEng([]);
+          //           }
+          // }
 
           const date = (date: string) => {
                     return moment(date).format('Do MMM YYYY');
@@ -47,8 +54,8 @@ export default function ResultForm() {
           }
 
           const handleResult = (e: React.SyntheticEvent) => {
-                    setLoading(true);
                     e.preventDefault();
+                    setLoading(true);
                     const form = e.target as typeof e.target & {
                               rollNo: { value: string };
                               reg: { value: string };
@@ -57,7 +64,8 @@ export default function ResultForm() {
 
                     const roll = form.rollNo?.value;
                     const reg = form.reg.value;
-                    const exam = form.exam.value.toUpperCase().split(' ').join('+');
+                    // const exam = form.exam.value.toUpperCase().split(' ').join('+');
+                    const exam = "DIPLOMA+IN+ENGINEERING";
 
                     if (roll === "") {
                               toast.error('Roll Number is required..!', {
@@ -83,12 +91,13 @@ export default function ResultForm() {
                     })
                               .then(res => res.json())
                               .then(data => {
+                                        console.log(data);
                                         if (data.roll === undefined) {
                                                   Swal.fire({
                                                             title: 'Oops!',
                                                             text: 'Result not found',
                                                             icon: 'error',
-                                                            confirmButtonText: 'Ok'
+                                                            confirmButtonText: 'Ok, Got it..!'
                                                   })
                                                   setLoading(false);
                                         } else {
@@ -118,17 +127,11 @@ export default function ResultForm() {
                     const boardRoll = e.target.value;
                     if (boardRoll === "") {
                               setBoardError("Board Roll is required");
-                    }
-                    else if (!/^[0-9]*$/.test(boardRoll)) {
+                    } else if (!/^[0-9]*$/.test(boardRoll)) {
                               setBoardError("Roll must be a positive integer");
-                    }
-                    else if (boardRoll.length > 6 || boardRoll.length < 6) {
+                    } else if (boardRoll.length !== 6) {
                               setBoardError("Roll must be 6 digit");
-                    }
-                    else if (boardRoll === "123456" || boardRoll === "654321" || boardRoll === "987654" || boardRoll === "456789" || boardRoll === "000000" || boardRoll === "111111" || boardRoll === "222222" || boardRoll === "333333" || boardRoll === "444444" || boardRoll === "555555" || boardRoll === "666666" || boardRoll === "777777" || boardRoll === "888888" || boardRoll === "999999") {
-                              setBoardError("Roll is not valid");
-                    }
-                    else {
+                    } else {
                               setBoardError("");
                     }
           }
@@ -158,7 +161,7 @@ export default function ResultForm() {
                                                                                                     ) : (
                                                                                                               <form onSubmit={handleResult} className='mt-6 w-full md:px-6'>
 
-                                                                                                                        <div className="name border rounded p-3 relative mt-10 w-full">
+                                                                                                                        {/* <div className="name border rounded p-3 relative mt-10 w-full">
                                                                                                                                   <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
                                                                                                                                             <h3 className="text-xs font-poppins">Select Exam</h3>
                                                                                                                                   </div>
@@ -171,11 +174,12 @@ export default function ResultForm() {
                                                                                                                                                       className="select focus:outline-none bg-transparent w-full"
                                                                                                                                                       defaultValue="Diploma In Engineering"
                                                                                                                                                       onChange={handleExamChange}
+                                                                                                                                                      onKeyDown={(e) => { e.key === 'Enter' && e.preventDefault() }}
                                                                                                                                             >
                                                                                                                                                       <option>Diploma In Engineering</option>
                                                                                                                                             </select>
                                                                                                                                   </div>
-                                                                                                                        </div>
+                                                                                                                        </div> */}
                                                                                                                         <div className="name border rounded p-3 relative mt-10 w-full">
                                                                                                                                   <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
                                                                                                                                             <h3 className="text-xs font-poppins">Select Regulation</h3>
@@ -214,6 +218,7 @@ export default function ResultForm() {
                                                                                                                                                       onChange={handleBoardRoll}
                                                                                                                                                       className="form-control outline-none pl-4 w-full bg-transparent"
                                                                                                                                                       placeholder="e.g. 971711"
+                                                                                                                                                      onKeyDown={(e) => { e.key === 'Enter' && boardError && e.preventDefault() }}
                                                                                                                                             />
                                                                                                                                   </div>
                                                                                                                                   {boardError && (

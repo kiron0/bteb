@@ -31,7 +31,7 @@ export default function Group() {
                 You can see any group or list of results by the list of the roll numbers. Just enter the roll numbers and see the results. It's that simple.
               </p>
               <div className='flex justify-center md:justify-start items-center'>
-                <Link to="/group-results" className="btn btn-primary text-white">
+                <Link to="/groupResults" className="btn btn-primary text-white">
                   Check Group Results
                 </Link>
               </div>

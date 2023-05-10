@@ -17,7 +17,7 @@ const router = createBrowserRouter(
       element: <Root />,
     },
     {
-      path: '/results',
+      path: '/individualResult',
       element:
         <>
           <Navbar />
@@ -25,7 +25,7 @@ const router = createBrowserRouter(
         </>,
     },
     {
-      path: '/group-results',
+      path: '/groupResults',
       element: <GroupResult />,
     },
     {

@@ -35,7 +35,7 @@ export default function Individual() {
                 Does it feel difficult to find BTEB results? Well... Not anymore! Here is the easiest way to find your diploma or polytechnic results.
               </p>
               <div className='flex justify-center md:justify-start items-center'>
-                <Link to="/results" className="btn btn-primary text-white">
+                <Link to="/individualResult" className="btn btn-primary text-white">
                   Check Results
                 </Link>
               </div>
