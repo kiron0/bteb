@@ -53,7 +53,7 @@ export default function IndividualResult({ finalResult, date }: Props) {
                     }
                   </span>
                 </p>
-                <p className='text-center text-lg'>{date(result?.exam_results[0]?.date?.slice(0, 10))}</p>
+                <p className='text-center text-lg'>{date(result?.exam_results[0]?.date)}</p>
               </div>
               {result?.exam_results[0]?.cgpa &&
                 <span className='flex flex-col justify-center items-center'>

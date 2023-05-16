@@ -9,6 +9,7 @@ import Developer from './pages/Developer/Developer';
 import CGPACalculator from './pages/CGPACalculator/CGPACalculator';
 import Navbar from './shared/Navbar/Navbar';
 import ResultForm from './pages/IndividualResult/ResultForm';
+import ResultForm1 from './pages/V1/ResultForm';
 
 const router = createBrowserRouter(
   [
@@ -35,6 +36,10 @@ const router = createBrowserRouter(
     {
       path: '/dev',
       element: <Developer />,
+    },
+    {
+      path: '/v1/individualResult',
+      element: <ResultForm1 />,
     },
     {
       path: "*",
