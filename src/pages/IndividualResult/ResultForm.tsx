@@ -15,35 +15,40 @@ export default function ResultForm() {
           useScrollToTop();
           const [finalResult, setFinalResult] = useState({} as any);
           const [loading, setLoading] = useState<boolean>(false);
-          // const [diplomaInEng, setDiplomaInEng] = useState([
-          //           { name: 'Any', value: '' },
-          //           { name: '2010', value: '2010' },
-          //           { name: '2016', value: '2016' },
-          //           { name: '2022', value: '2022' },
-          // ]);
-
-          const diplomaInEng = [
+          const [examType, setExamType] = useState([
                     { name: 'Any', value: '' },
                     { name: '2010', value: '2010' },
                     { name: '2016', value: '2016' },
                     { name: '2022', value: '2022' },
-          ]
+          ]);
 
-          // const handleExamChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-          //           const exam = e.target.value;
-          //           if (exam === 'Diploma In Engineering') {
-          //                     setDiplomaInEng(
-          //                               [
-          //                                         { name: 'Any', value: '0' },
-          //                                         { name: '2010', value: '2010' },
-          //                                         { name: '2016', value: '2016' },
-          //                                         { name: '2022', value: '2022' },
-          //                               ]
-          //                     );
-          //           } else {
-          //                     setDiplomaInEng([]);
-          //           }
-          // }
+          const handleExamChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+                    const exam = e.target.value;
+                    if (exam === 'Diploma In Engineering') {
+                              setExamType(
+                                        [
+                                                  { name: 'Any', value: '0' },
+                                                  { name: '2010', value: '2010' },
+                                                  { name: '2016', value: '2016' },
+                                                  { name: '2022', value: '2022' },
+                                        ]
+                              );
+                    } else if (exam === 'Diploma In Textile Engineering') {
+                              setExamType([
+                                        { name: 'Any', value: '0' },
+                                        { name: '2005', value: '2005' },
+                                        { name: '2010', value: '2010' },
+                                        { name: '2013', value: '2013' },
+                              ]);
+                    } else {
+                              setExamType([
+                                        { name: 'Any', value: '0' },
+                                        { name: '2010', value: '2010' },
+                                        { name: '2016', value: '2016' },
+                                        { name: '2022', value: '2022' },
+                              ]);
+                    }
+          }
 
           const date = (date: string) => {
                     return moment(date).format('Do MMM YYYY');
@@ -64,8 +69,7 @@ export default function ResultForm() {
 
                     const roll = form.rollNo?.value;
                     const reg = form.reg.value;
-                    // const exam = form.exam.value.toUpperCase().split(' ').join('+');
-                    const exam = "DIPLOMA+IN+ENGINEERING";
+                    const exam = form.exam.value.toUpperCase().split(' ').join('+');
 
                     if (roll === "") {
                               toast.error('Roll Number is required..!', {
@@ -91,7 +95,6 @@ export default function ResultForm() {
                     })
                               .then(res => res.json())
                               .then(data => {
-                                        console.log(data);
                                         if (data.roll === undefined) {
                                                   Swal.fire({
                                                             title: 'Oops!',
@@ -141,7 +144,7 @@ export default function ResultForm() {
                               <div className='flex justify-center items-center md:py-12 w-full'>
                                         <div className='w-full md:w-10/12 max-w-4xl md:glass rounded-xl pb-6'>
                                                   <div className="card-body p-3 md:p-0">
-                                                            <h2 className='text-3xl text-center pt-10 font-semibold'>Individual's Result</h2>
+                                                            <h2 className='text-3xl text-center pt-10 font-semibold'>Individual Result</h2>
                                                             {
                                                                       finalResult?.roll && (
                                                                                 <div className="card-actions justify-center mt-10">
@@ -161,7 +164,7 @@ export default function ResultForm() {
                                                                                                     ) : (
                                                                                                               <form onSubmit={handleResult} className='mt-6 w-full md:px-6'>
 
-                                                                                                                        {/* <div className="name border rounded p-3 relative mt-10 w-full">
+                                                                                                                        <div className="name border rounded p-3 relative mt-10 w-full">
                                                                                                                                   <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
                                                                                                                                             <h3 className="text-xs font-poppins">Select Exam</h3>
                                                                                                                                   </div>
@@ -177,9 +180,10 @@ export default function ResultForm() {
                                                                                                                                                       onKeyDown={(e) => { e.key === 'Enter' && e.preventDefault() }}
                                                                                                                                             >
                                                                                                                                                       <option>Diploma In Engineering</option>
+                                                                                                                                                      <option>Diploma In Textile Engineering</option>
                                                                                                                                             </select>
                                                                                                                                   </div>
-                                                                                                                        </div> */}
+                                                                                                                        </div>
                                                                                                                         <div className="name border rounded p-3 relative mt-10 w-full">
                                                                                                                                   <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
                                                                                                                                             <h3 className="text-xs font-poppins">Select Regulation</h3>
@@ -194,8 +198,8 @@ export default function ResultForm() {
                                                                                                                                                       defaultValue="2022"
                                                                                                                                             >
                                                                                                                                                       {
-                                                                                                                                                                diplomaInEng && (
-                                                                                                                                                                          diplomaInEng.map((reg: any, index: number) => (
+                                                                                                                                                                examType && (
+                                                                                                                                                                          examType.map((reg: any, index: number) => (
                                                                                                                                                                                     <option key={index} value={reg.value}>{reg.name}</option>
                                                                                                                                                                           ))
                                                                                                                                                                 )

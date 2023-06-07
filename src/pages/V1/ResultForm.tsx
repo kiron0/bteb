@@ -65,17 +65,11 @@ export default function ResultForm() {
                     const boardRoll = e.target.value;
                     if (boardRoll === "") {
                               setBoardError("Board Roll is required");
-                    }
-                    else if (!/^[0-9]*$/.test(boardRoll)) {
+                    } else if (!/^[0-9]*$/.test(boardRoll)) {
                               setBoardError("Roll must be a positive integer");
-                    }
-                    else if (boardRoll.length > 6 || boardRoll.length < 6) {
-                              setBoardError("Roll must be 6 digit");
-                    }
-                    else if (boardRoll === "123456" || boardRoll === "654321" || boardRoll === "987654" || boardRoll === "456789" || boardRoll === "000000" || boardRoll === "111111" || boardRoll === "222222" || boardRoll === "333333" || boardRoll === "444444" || boardRoll === "555555" || boardRoll === "666666" || boardRoll === "777777" || boardRoll === "888888" || boardRoll === "999999") {
-                              setBoardError("Roll is not valid");
-                    }
-                    else {
+                    } else if (boardRoll.length < 6 || boardRoll.length > 7) {
+                              setBoardError("Roll must be 6 to 7 digit");
+                    } else {
                               setBoardError("");
                     }
           }

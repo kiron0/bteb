@@ -69,8 +69,11 @@ export default function CalculatorForm() {
           title: `Your CGPA is: ${total.toFixed(2)}`,
           text: `This calculation is based on ${reg} regulation.`,
           icon: 'success',
-          confirmButtonText: 'Ok, Got it',
-          background: '#fff',
+          showConfirmButton: false,
+          showCloseButton: true,
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          allowEnterKey: false,
         });
       }
       else if (reg === '2016') {
@@ -79,8 +82,11 @@ export default function CalculatorForm() {
           title: `Your CGPA is: ${total.toFixed(2)}`,
           text: `This calculation is based on ${reg} regulation.`,
           icon: 'success',
-          confirmButtonText: 'Ok, Got it',
-          background: '#fff',
+          showConfirmButton: false,
+          showCloseButton: true,
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          allowEnterKey: false,
         });
       } else if (reg === '2022') {
         const total = ((Number(first) / 100) * 5) + ((Number(second) / 100) * 5) + ((Number(third) / 100) * 10) + ((Number(fourth) / 100) * 10) + ((Number(fifth) / 100) * 20) + ((Number(sixth) / 100) * 20) + ((Number(seventh) / 100) * 20) + ((Number(eighth) / 100) * 10);
@@ -88,8 +94,11 @@ export default function CalculatorForm() {
           title: `Your CGPA is: ${total.toFixed(2)}`,
           text: `This calculation is based on ${reg} regulation.`,
           icon: 'success',
-          confirmButtonText: 'Ok, Got it',
-          background: '#fff',
+          showConfirmButton: false,
+          showCloseButton: true,
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          allowEnterKey: false,
         });
       } else {
         toast.error('Please select a regulation', {
@@ -114,10 +123,10 @@ export default function CalculatorForm() {
     <Fade top duration={1000} distance="40px">
       <div className='flex flex-col lg:flex-row justify-center items-center md:py-12 gap-16'>
         <div className='card w-full md:w-2/3 lg:w-1/3 md:glass'>
-          <div className='card-body'>
+          <div className='px-4 py-10 md:card-body'>
             <div className={`flex flex-col justify-center items-center md:pt-7 select-none text-black`}>
-              <h2 className="text-2xl md:text-3xl font-semibold">CGPA Calculator</h2>
-              <form onSubmit={handleCalculate} id='cgpaCalc' className='mt-6 w-full md:px-6'>
+              <h2 className="text-2xl md:text-3xl font-bold">CGPA Calculator</h2>
+              <form onSubmit={handleCalculate} id='cgpaCalc' className='mt-2 w-full md:px-6'>
                 <div className="name border rounded p-3 relative mt-10 w-full">
                   <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
                     <h3 className="text-xs font-poppins">Select Regulation</h3>
@@ -137,11 +146,13 @@ export default function CalculatorForm() {
                     </select>
                   </div>
                 </div>
-
+                <p className='text-center pt-4 font-bold'>
+                  Enter your GPA for each semester below
+                </p>
                 <div className='flex justify-center items-center gap-3'>
                   <div className="name border rounded p-3 relative mt-10">
                     <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
-                      <h3 className="text-xs font-poppins">1st</h3>
+                      <h3 className="text-xs font-poppins font-bold">1st Semester</h3>
                     </div>
                     <div className={`input-group flex items-center my-2 border p-3 rounded-md mt-2 `}>
                       <div className="icon">
@@ -158,7 +169,7 @@ export default function CalculatorForm() {
                   </div>
                   <div className="name border rounded p-3 relative mt-10">
                     <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
-                      <h3 className="text-xs font-poppins">2nd</h3>
+                      <h3 className="text-xs font-poppins font-bold">2nd Semester</h3>
                     </div>
                     <div className={`input-group flex items-center my-2 border p-3 rounded-md mt-2 `}>
                       <div className="icon">
@@ -177,7 +188,7 @@ export default function CalculatorForm() {
                 <div className='flex justify-center items-center gap-3'>
                   <div className="name border rounded p-3 relative mt-10">
                     <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
-                      <h3 className="text-xs font-poppins">3rd</h3>
+                      <h3 className="text-xs font-poppins font-bold">3rd Semester</h3>
                     </div>
                     <div className={`input-group flex items-center my-2 border p-3 rounded-md mt-2 `}>
                       <div className="icon">
@@ -194,7 +205,7 @@ export default function CalculatorForm() {
                   </div>
                   <div className="name border rounded p-3 relative mt-10">
                     <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
-                      <h3 className="text-xs font-poppins">4th</h3>
+                      <h3 className="text-xs font-poppins font-bold">4th Semester</h3>
                     </div>
                     <div className={`input-group flex items-center my-2 border p-3 rounded-md mt-2 `}>
                       <div className="icon">
@@ -213,7 +224,7 @@ export default function CalculatorForm() {
                 <div className='flex justify-center items-center gap-3'>
                   <div className="name border rounded p-3 relative mt-10">
                     <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
-                      <h3 className="text-xs font-poppins">5th</h3>
+                      <h3 className="text-xs font-poppins font-bold">5th Semester</h3>
                     </div>
                     <div className={`input-group flex items-center my-2 border p-3 rounded-md mt-2 `}>
                       <div className="icon">
@@ -230,7 +241,7 @@ export default function CalculatorForm() {
                   </div>
                   <div className="name border rounded p-3 relative mt-10">
                     <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
-                      <h3 className="text-xs font-poppins">6th</h3>
+                      <h3 className="text-xs font-poppins font-bold">6th Semester</h3>
                     </div>
                     <div className={`input-group flex items-center my-2 border p-3 rounded-md mt-2 `}>
                       <div className="icon">
@@ -249,7 +260,7 @@ export default function CalculatorForm() {
                 <div className='flex justify-center items-center gap-3'>
                   <div className="name border rounded p-3 relative mt-10">
                     <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
-                      <h3 className="text-xs font-poppins">7th</h3>
+                      <h3 className="text-xs font-poppins font-bold">7th Semester</h3>
                     </div>
                     <div className={`input-group flex items-center my-2 border p-3 rounded-md mt-2 `}>
                       <div className="icon">
@@ -266,7 +277,7 @@ export default function CalculatorForm() {
                   </div>
                   <div className="name border rounded p-3 relative mt-10">
                     <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
-                      <h3 className="text-xs font-poppins">8th</h3>
+                      <h3 className="text-xs font-poppins font-bold">8th Semester</h3>
                     </div>
                     <div className={`input-group flex items-center my-2 border p-3 rounded-md mt-2 `}>
                       <div className="icon">
@@ -283,12 +294,12 @@ export default function CalculatorForm() {
                   </div>
                 </div>
 
-                <div className="modal-action">
-                  <span className={`btn btn-sm md:btn-md glass text-red-500 flex gap-2 `} onClick={handleClear}>
+                <div className="modal-action gap-2">
+                  <span className={`btn btn-sm md:btn-md glass text-red-500 flex justify-center items-center gap-2`} onClick={handleClear}>
                     <i className="bx bx-trash-alt text-lg"></i> AC/Clear
                   </span>
                   <button className={`btn btn-sm md:btn-md glass text-black flex gap-2 `} type="submit">
-                    <i className="bx bx-id-card text-lg"></i> Calculate
+                    <i className="bx bx-calculator text-lg"></i> Calculate
                   </button>
                 </div>
               </form>
@@ -296,7 +307,7 @@ export default function CalculatorForm() {
           </div>
         </div>
         <div className='card w-full md:w-2/3 lg:w-1/3 md:glass'>
-          <div className='card-body'>
+          <div className='px-4 pb-10 md:card-body'>
             <div className={`flex flex-col justify-center items-center md:pt-7 select-none text-black`}>
               <h2 className="text-xl md:text-2xl font-bold text-center">Semester Wise GPA Priorities For Regulations</h2>
               <div className="overflow-x-auto mt-6 w-full">
@@ -358,7 +369,7 @@ export default function CalculatorForm() {
                       <td>15%</td>
                       <td>10%</td>
                     </tr>
-                    <tr>
+                    <tr className='font-bold'>
                       <td>Total</td>
                       <td>100%</td>
                       <td>100%</td>
@@ -373,6 +384,4 @@ export default function CalculatorForm() {
       </div>
     </Fade>
   )
-
-
 }

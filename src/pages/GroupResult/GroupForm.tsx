@@ -15,13 +15,43 @@ export default function GroupForm() {
           useScrollToTop();
           const [finalResult, setFinalResult] = useState({} as any);
           const [loading, setLoading] = useState<boolean>(false);
+          const [examType, setExamType] = useState([
+                    { name: 'Any', value: '' },
+                    { name: '2010', value: '2010' },
+                    { name: '2016', value: '2016' },
+                    { name: '2022', value: '2022' },
+          ]);
+
+          const handleExamChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+                    const exam = e.target.value;
+                    if (exam === 'Diploma In Engineering') {
+                              setExamType(
+                                        [
+                                                  { name: 'Any', value: '0' },
+                                                  { name: '2010', value: '2010' },
+                                                  { name: '2016', value: '2016' },
+                                                  { name: '2022', value: '2022' },
+                                        ]
+                              );
+                    } else if (exam === 'Diploma In Textile Engineering') {
+                              setExamType([
+                                        { name: 'Any', value: '0' },
+                                        { name: '2005', value: '2005' },
+                                        { name: '2010', value: '2010' },
+                                        { name: '2013', value: '2013' },
+                              ]);
+                    } else {
+                              setExamType([
+                                        { name: 'Any', value: '0' },
+                                        { name: '2010', value: '2010' },
+                                        { name: '2016', value: '2016' },
+                                        { name: '2022', value: '2022' },
+                              ]);
+                    }
+          }
 
           const date = (date: string) => {
                     return moment(date).format('Do MMM YYYY');
-          }
-
-          const searchAgain = () => {
-                    setFinalResult("" as any);
           }
 
           const handleResult = (e: React.SyntheticEvent) => {
@@ -37,8 +67,7 @@ export default function GroupForm() {
                     const roll = form.rollNo.value;
                     const reg = form.reg.value;
                     const sem = form.sem.value.slice(0, 1);
-                    // const exam = form.exam.value.toUpperCase().split(' ').join('+');
-                    const exam = "DIPLOMA+IN+ENGINEERING";
+                    const exam = form.exam.value.toUpperCase().split(' ').join('+');
 
                     if (roll === "") {
                               toast.error('Roll Numbers are required..!', {
@@ -97,7 +126,6 @@ export default function GroupForm() {
 
           const handleBoardRoll = (e: React.ChangeEvent<HTMLInputElement>) => {
                     const boardRoll = e.target.value;
-                    // validate board roll formate = 921711-921714
                     const regex = /^([0-9]{6})-([0-9]{6})$/;
                     if (boardRoll.match(regex)) {
                               setBoardError("");
@@ -113,11 +141,11 @@ export default function GroupForm() {
                               <div className='flex justify-center items-center md:py-12 w-full'>
                                         <div className='w-full md:w-10/12 max-w-4xl md:glass rounded-xl pb-6'>
                                                   <div className="card-body p-3 md:p-0">
-                                                            <h2 className='text-3xl text-center pt-10 font-semibold'>Group's Result</h2>
+                                                            <h2 className='text-3xl text-center pt-10 font-semibold'>Group Result</h2>
                                                             {
                                                                       finalResult?.results?.length > 0 && (
                                                                                 <div className="card-actions justify-center my-10">
-                                                                                          <button className="btn btn-sm glass text-black flex items-center gap-1" onClick={searchAgain}><TbReload className='text-lg' /> Search Again</button>
+                                                                                          <button className="btn btn-sm glass text-black flex items-center gap-1" onClick={() => setFinalResult("" as any)}><TbReload className='text-lg' /> Search Again</button>
                                                                                 </div>
                                                                       )
                                                             }
@@ -131,8 +159,7 @@ export default function GroupForm() {
                                                                                                               <GroupResultTab finalResult={finalResult} date={date} />
                                                                                                     ) : (
                                                                                                               <form onSubmit={handleResult} className='mt-6 w-full md:px-6'>
-
-                                                                                                                        {/* <div className="name border rounded p-3 relative mt-10 w-full">
+                                                                                                                        <div className="name border rounded p-3 relative mt-10 w-full">
                                                                                                                                   <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
                                                                                                                                             <h3 className="text-xs font-poppins">Select Exam</h3>
                                                                                                                                   </div>
@@ -144,11 +171,14 @@ export default function GroupForm() {
                                                                                                                                                       name='exam'
                                                                                                                                                       className="select focus:outline-none bg-transparent w-full"
                                                                                                                                                       defaultValue="Diploma In Engineering"
+                                                                                                                                                      onChange={handleExamChange}
+                                                                                                                                                      onKeyDown={(e) => { e.key === 'Enter' && e.preventDefault() }}
                                                                                                                                             >
                                                                                                                                                       <option>Diploma In Engineering</option>
+                                                                                                                                                      <option>Diploma In Textile Engineering</option>
                                                                                                                                             </select>
                                                                                                                                   </div>
-                                                                                                                        </div> */}
+                                                                                                                        </div>
 
                                                                                                                         <div className="name border rounded p-3 relative mt-10 w-full">
                                                                                                                                   <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
@@ -163,10 +193,13 @@ export default function GroupForm() {
                                                                                                                                                       className="select focus:outline-none bg-transparent w-full"
                                                                                                                                                       defaultValue={2022}
                                                                                                                                             >
-                                                                                                                                                      <option value={""}>Any</option>
-                                                                                                                                                      <option>2010</option>
-                                                                                                                                                      <option>2016</option>
-                                                                                                                                                      <option>2022</option>
+                                                                                                                                                      {
+                                                                                                                                                                examType && (
+                                                                                                                                                                          examType.map((reg: any, index: number) => (
+                                                                                                                                                                                    <option key={index} value={reg.value}>{reg.name}</option>
+                                                                                                                                                                          ))
+                                                                                                                                                                )
+                                                                                                                                                      }
                                                                                                                                             </select>
                                                                                                                                   </div>
                                                                                                                         </div>

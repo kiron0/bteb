@@ -14,12 +14,12 @@ export default function Navbar() {
                               <li className='lg:mr-6 py-2 lg:py-0'>
                                         <NavLink to="/individualResult" className={({ isActive }) =>
                                                   isActive ? "text-white btn btn-primary" : "btn glass text-black"
-                                        }>Individual's Result</NavLink>
+                                        }>Individual Result</NavLink>
                               </li>
                               <li className='lg:mr-6 py-2 lg:py-0'>
                                         <NavLink to="/groupResults" className={({ isActive }) =>
                                                   isActive ? "text-white btn btn-primary" : "btn glass text-black"
-                                        }>Group's Result</NavLink>
+                                        }>Group Result</NavLink>
                               </li>
                               <li className='lg:mr-6 py-2 lg:py-0'>
                                         <NavLink to="/cgpaCalc" className={({ isActive }) =>

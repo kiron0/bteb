@@ -34,7 +34,16 @@ export default function IndividualResult({ finalResult, date }: Props) {
           <p className='text-center glass p-3 rounded-xl text-xl text-red-500 mt-8'>{totalFailedSubjects} {totalFailedSubjects > 1 ? "subjects" : "subject"} yet to pass</p>
         )
       }
-      <div className='rounded-md w-full md:w-1/2 mt-12 gap-6 flex flex-col'>
+      {
+        finalResult?.results?.map((result: any, index: number) => (
+          result?.exam_results[0]?.cgpa &&
+          <div className='flex flex-col justify-center items-center py-5 pb-8 rounded-md w-full md:w-1/2 my-5 md:mt-12 glass' key={index}>
+            <p className='text-center mt-7 font-bold text-[#037bc0]'>CGPA</p>
+            <p className='text-center text-3xl text-[#037bc0] font-black'>{result?.exam_results[0]?.cgpa}</p>
+          </div>
+        ))
+      }
+      <div className='rounded-md w-full md:w-1/2 mt-10 md:mt-16 gap-6 flex flex-col'>
         {
           finalResult?.results?.map((result: any, index: number) => (
             <div key={index} className='py-6 glass rounded-xl'>
@@ -55,9 +64,10 @@ export default function IndividualResult({ finalResult, date }: Props) {
                 </p>
                 <p className='text-center text-lg'>{date(result?.exam_results[0]?.date)}</p>
               </div>
-              {result?.exam_results[0]?.cgpa &&
+              {result?.exam_results[0]?.cgpa && finalResult?.exam ===
+                "DIPLOMA IN ENGINEERING" &&
                 <span className='flex flex-col justify-center items-center'>
-                  <p className='text-center mt-7'>CGPA</p>
+                  <p className='text-center mt-7 font-bold'>CGPA</p>
                   <p className='text-center text-3xl text-[#008000] font-black'>{result?.exam_results[0]?.cgpa}</p>
                 </span>
               }
