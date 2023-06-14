@@ -10,6 +10,9 @@ import CGPACalculator from './pages/CGPACalculator/CGPACalculator';
 import Navbar from './shared/Navbar/Navbar';
 import ResultForm from './pages/IndividualResult/ResultForm';
 import ResultForm1 from './pages/V1/ResultForm';
+import BookList from './pages/BookList/BookList';
+import Department from './pages/BookList/Department';
+import Books from './pages/BookList/Books';
 
 const router = createBrowserRouter(
   [
@@ -32,6 +35,28 @@ const router = createBrowserRouter(
     {
       path: '/cgpaCalc',
       element: <CGPACalculator />,
+    },
+    {
+      path: '/bookList',
+      element:
+        <>
+          {/* <Navbar /> */}
+          <BookList />
+        </>,
+    },
+    {
+      path: '/bookList/:department',
+      element: <>
+        {/* <Navbar /> */}
+        <Department />
+      </>,
+    },
+    {
+      path: '/bookList/:department/:semester',
+      element: <>
+        {/* <Navbar /> */}
+        <Books />
+      </>,
     },
     {
       path: '/dev',

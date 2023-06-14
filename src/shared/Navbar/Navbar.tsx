@@ -26,16 +26,21 @@ export default function Navbar() {
                                                   isActive ? "text-white btn btn-primary" : "btn glass text-black"
                                         }>CGPA Calculator</NavLink>
                               </li>
+                              <li className='lg:mr-6 py-2 lg:py-0'>
+                                        <NavLink to="/bookList" className={({ isActive }) =>
+                                                  isActive ? "text-white btn btn-primary" : "btn glass text-black"
+                                        }>Book List</NavLink>
+                              </li>
                               <li className='lg:hidden py-2 lg:py-0'>
                                         <NavLink to="/dev" className={({ isActive }) =>
                                                   isActive ? "text-white btn btn-primary" : "btn glass text-black"
                                         }>Developer</NavLink>
                               </li>
-                              <li className='py-2 lg:py-0'>
+                              {/* <li className='py-2 lg:py-0'>
                                         <NavLink to="/v1/individualResult" className={({ isActive }) =>
                                                   isActive ? "text-white btn btn-primary" : "btn glass text-black"
                                         }>V1</NavLink>
-                              </li>
+                              </li> */}
                     </>
           )
 
