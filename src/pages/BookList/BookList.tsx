@@ -9,7 +9,7 @@ export default function BookList() {
           return (
                     <div className='pb-10'>
                               <h1 className='text-center py-10 text-2xl md:text-3xl font-bold px-3'>Polytechnic All Department Book List</h1>
-                              <button onClick={() => navigate("/")} className='glass btn flex justify-center items-center mx-auto text-black mb-8'>Go Home</button>
+                              <button onClick={() => navigate("/")} className='glass btn btn-sm md:btn-md flex justify-center items-center mx-auto text-black mb-8 gap-2'><i className='bx bx-home-heart text-xl'></i>Go Home</button>
                               <p className='text-center py-4 pb-6 font-bold'>
                                         Select Your Department to See Your Book List
                               </p>

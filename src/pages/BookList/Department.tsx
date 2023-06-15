@@ -22,8 +22,8 @@ export default function Department() {
                                         }
                               </span> Department Book List</h1>
                               <div className='flex justify-center items-center gap-5'>
-                                        <button onClick={() => navigate(-1)} className='glass btn text-black mb-8'>Go Back</button>
-                                        <button onClick={() => navigate("/")} className='glass btn text-black mb-8'>Go Home</button>
+                                        <button onClick={() => navigate(-1)} className='glass btn btn-sm md:btn-md text-black mb-8 gap-1'><i className='bx bx-arrow-back text-xl'></i>Go Back</button>
+                                        <button onClick={() => navigate("/")} className='glass btn btn-sm md:btn-md text-black mb-8 gap-1'><i className='bx bx-home-heart text-xl'></i>Go Home</button>
                               </div>
                               <p className='text-center py-4 pb-6 font-bold'>
                                         Select Your Semester to See Your Book List

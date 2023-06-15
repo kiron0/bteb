@@ -38,25 +38,15 @@ const router = createBrowserRouter(
     },
     {
       path: '/bookList',
-      element:
-        <>
-          {/* <Navbar /> */}
-          <BookList />
-        </>,
+      element: <BookList />,
     },
     {
       path: '/bookList/:department',
-      element: <>
-        {/* <Navbar /> */}
-        <Department />
-      </>,
+      element: <Department />,
     },
     {
       path: '/bookList/:department/:semester',
-      element: <>
-        {/* <Navbar /> */}
-        <Books />
-      </>,
+      element: <Books />,
     },
     {
       path: '/dev',

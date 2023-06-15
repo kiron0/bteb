@@ -18,10 +18,10 @@ export default function Books() {
                                                             )
                                                   )
                                         })
-                              } {semester}</span> semester Book List</h1>
+                              }</span> <span className='text-success'>{semester}</span> semester Book List</h1>
                               <div className='flex justify-center items-center gap-5'>
-                                        <button onClick={() => navigate(-1)} className='glass btn text-black mb-8'>Go Back</button>
-                                        <button onClick={() => navigate("/")} className='glass btn text-black mb-8'>Go Home</button>
+                                        <button onClick={() => navigate(-1)} className='glass btn btn-sm md:btn-md text-black mb-8 gap-1'><i className='bx bx-arrow-back text-xl'></i>Go Back</button>
+                                        <button onClick={() => navigate("/")} className='glass btn btn-sm md:btn-md text-black mb-8 gap-1'><i className='bx bx-home-heart text-xl'></i>Go Home</button>
                               </div>
                               <p className='text-center py-4 pb-6 font-bold'>
                                         Here is your Book List
@@ -49,9 +49,9 @@ export default function Books() {
                                                                                                                                                                 book.bookList.map((book, index) => {
                                                                                                                                                                           return (
                                                                                                                                                                                     <tr>
-                                                                                                                                                                                              <th>{index + 1}</th>
-                                                                                                                                                                                              <td>{book.bookName}</td>
-                                                                                                                                                                                              <td className='text-center'>{book.bookCode}</td>
+                                                                                                                                                                                              <th className={`${book?.optional && 'text-error'}`}>{index + 1}</th>
+                                                                                                                                                                                              <td className={`${book?.optional && 'text-error'}`}>{book.bookName}</td>
+                                                                                                                                                                                              <td className={`text-center ${book?.optional && 'text-error'}`}>{book.bookCode}</td>
                                                                                                                                                                                     </tr>
                                                                                                                                                                           )
                                                                                                                                                                 })
@@ -63,7 +63,7 @@ export default function Books() {
                                                                                                     ) : (
                                                                                                               <div className='px-5 w-full md:w-1/2 lg:w-1/4 mx-auto' key={index}>
                                                                                                                         <div className='glass px-5 py-10 rounded-lg select-none cursor-not-allowed'>
-                                                                                                                                  <h1 className='text-lg font-bold text-center capitalize'>No Book Found</h1>
+                                                                                                                                  <h1 className='text-lg font-bold text-center capitalize text-info'>Book List are coming soon..!</h1>
                                                                                                                         </div>
                                                                                                               </div>
                                                                                                     )

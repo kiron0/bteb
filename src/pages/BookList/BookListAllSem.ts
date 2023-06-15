@@ -306,13 +306,38 @@ export const BooksList = [
                                         "bookList": [
                                                   {
                                                             "id": 1,
-                                                            "bookName": "Computer Fundamentals",
-                                                            "bookCode": "CSE 1101",
+                                                            "bookName": "Basic Electricity",
+                                                            "bookCode": "66711",
                                                   },
                                                   {
                                                             "id": 2,
-                                                            "bookName": "Computer Fundamentals",
-                                                            "bookCode": "CSE 1101",
+                                                            "bookName": "Electrical Engineering Materials",
+                                                            "bookCode": "66713",
+                                                  },
+                                                  {
+                                                            "id": 3,
+                                                            "bookName": "Basic Electronics",
+                                                            "bookCode": "66811",
+                                                  },
+                                                  {
+                                                            "id": 4,
+                                                            "bookName": "Engineering Drawing",
+                                                            "bookCode": "61011",
+                                                  },
+                                                  {
+                                                            "id": 5,
+                                                            "bookName": "Mathematics - 1",
+                                                            "bookCode": "65911",
+                                                  },
+                                                  {
+                                                            "id": 6,
+                                                            "bookName": "Chemistry",
+                                                            "bookCode": "65913",
+                                                  },
+                                                  {
+                                                            "id": 7,
+                                                            "bookName": "Physical Education & Life Skill Development",
+                                                            "bookCode": "65812",
                                                   },
                                         ],
                               },
@@ -322,40 +347,230 @@ export const BooksList = [
                                         "bookList": [
                                                   {
                                                             "id": 1,
-                                                            "bookName": "Computer Fundamentals",
-                                                            "bookCode": "CSE 1101",
+                                                            "bookName": "Electrical Circuits - 1",
+                                                            "bookCode": "66721",
                                                   },
                                                   {
                                                             "id": 2,
-                                                            "bookName": "Computer Fundamentals",
-                                                            "bookCode": "CSE 1101",
+                                                            "bookName": "Electrical Appliances",
+                                                            "bookCode": "66722",
+                                                  },
+                                                  {
+                                                            "id": 3,
+                                                            "bookName": "Computer Application",
+                                                            "bookCode": "66611",
+                                                  },
+                                                  {
+                                                            "id": 4,
+                                                            "bookName": "Mathematics - 2",
+                                                            "bookCode": "65921",
+                                                  },
+                                                  {
+                                                            "id": 5,
+                                                            "bookName": "Physics - 1",
+                                                            "bookCode": "65912",
+                                                  },
+                                                  {
+                                                            "id": 6,
+                                                            "bookName": "Bangla",
+                                                            "bookCode": "65711",
+                                                  },
+                                                  {
+                                                            "id": 7,
+                                                            "bookName": "English",
+                                                            "bookCode": "65712",
                                                   },
                                         ],
                               },
                               {
                                         "id": 3,
                                         "semester": "3rd Semester",
-                                        "bookList": [],
+                                        "bookList": [
+                                                  {
+                                                            "id": 1,
+                                                            "bookName": "Electrical Circuits - 2",
+                                                            "bookCode": "66731",
+                                                  },
+                                                  {
+                                                            "id": 2,
+                                                            "bookName": "Advanced Electricity",
+                                                            "bookCode": "66732",
+                                                  },
+                                                  {
+                                                            "id": 3,
+                                                            "bookName": "Electrical Engineering Drawing",
+                                                            "bookCode": "66733",
+                                                  },
+                                                  {
+                                                            "id": 4,
+                                                            "bookName": "Mathematics - 3",
+                                                            "bookCode": "65931",
+                                                  },
+                                                  {
+                                                            "id": 5,
+                                                            "bookName": "Physics - 2",
+                                                            "bookCode": "65922",
+                                                  },
+                                                  {
+                                                            "id": 6,
+                                                            "bookName": "Communicative English",
+                                                            "bookCode": "65722",
+                                                  },
+                                                  {
+                                                            "id": 7,
+                                                            "bookName": "Social Science",
+                                                            "bookCode": "65811",
+                                                  },
+                                        ],
                               },
                               {
                                         "id": 4,
                                         "semester": "4th Semester",
-                                        "bookList": [],
+                                        "bookList": [
+                                                  {
+                                                            "id": 1,
+                                                            "bookName": "Electrical Installation Planning and Estimating",
+                                                            "bookCode": "66741",
+                                                  },
+                                                  {
+                                                            "id": 2,
+                                                            "bookName": "DC Machines",
+                                                            "bookCode": "66742",
+                                                  },
+                                                  {
+                                                            "id": 3,
+                                                            "bookName": "Industrial Electronics",
+                                                            "bookCode": "66845",
+                                                  },
+                                                  {
+                                                            "id": 4,
+                                                            "bookName": "Applied Mechanics",
+                                                            "bookCode": "67045",
+                                                  },
+                                                  {
+                                                            "id": 5,
+                                                            "bookName": "Programming Essentials",
+                                                            "bookCode": "66631",
+                                                  },
+                                                  {
+                                                            "id": 6,
+                                                            "bookName": "Business organization & Communication",
+                                                            "bookCode": "65841",
+                                                  },
+                                        ],
                               },
                               {
                                         "id": 5,
                                         "semester": "5th Semester",
-                                        "bookList": [],
+                                        "bookList": [
+                                                  {
+                                                            "id": 1,
+                                                            "bookName": "Electrical & Electronic Measurement - 1",
+                                                            "bookCode": "66751",
+                                                  },
+                                                  {
+                                                            "id": 2,
+                                                            "bookName": "Generation of Electrical Power",
+                                                            "bookCode": "66752",
+                                                  },
+                                                  {
+                                                            "id": 3,
+                                                            "bookName": "Renewable Energy",
+                                                            "bookCode": "66753",
+                                                  },
+                                                  {
+                                                            "id": 4,
+                                                            "bookName": "Digital Electronics & Microprocessor",
+                                                            "bookCode": "66856",
+                                                  },
+                                                  {
+                                                            "id": 5,
+                                                            "bookName": "Environmental Studies",
+                                                            "bookCode": "69054",
+                                                  },
+                                                  {
+                                                            "id": 6,
+                                                            "bookName": "Accounting Theory & Practice",
+                                                            "bookCode": "65851",
+                                                  },
+                                        ],
                               },
                               {
                                         "id": 6,
                                         "semester": "6th Semester",
-                                        "bookList": [],
+                                        "bookList": [
+                                                  {
+                                                            "id": 1,
+                                                            "bookName": "Alternating Current Machines - 1",
+                                                            "bookCode": "66761",
+                                                  },
+                                                  {
+                                                            "id": 2,
+                                                            "bookName": "Electrical & Electronic Measurement - 2",
+                                                            "bookCode": "66762",
+                                                  },
+                                                  {
+                                                            "id": 3,
+                                                            "bookName": "Transmission and Distribution of Electrical Power - 1",
+                                                            "bookCode": "66763",
+                                                  },
+                                                  {
+                                                            "id": 4,
+                                                            "bookName": "Communication Engineering",
+                                                            "bookCode": "66867",
+                                                  },
+                                                  {
+                                                            "id": 5,
+                                                            "bookName": "Micro Controller & PLC",
+                                                            "bookCode": "66868",
+                                                  },
+                                                  {
+                                                            "id": 6,
+                                                            "bookName": "Industrial Management",
+                                                            "bookCode": "65852",
+                                                  },
+                                        ],
                               },
                               {
                                         "id": 7,
                                         "semester": "7th Semester",
-                                        "bookList": [],
+                                        "bookList": [
+                                                  {
+                                                            "id": 1,
+                                                            "bookName": "Alternating Current Machines - 2",
+                                                            "bookCode": "66771",
+                                                  },
+                                                  {
+                                                            "id": 2,
+                                                            "bookName": "Electrical Engineering project",
+                                                            "bookCode": "66772",
+                                                  },
+                                                  {
+                                                            "id": 3,
+                                                            "bookName": "Switch Gear & Protection",
+                                                            "bookCode": "66773",
+                                                  },
+                                                  {
+                                                            "id": 4,
+                                                            "bookName": "Transmission and Distribution of Electrical Power - 2",
+                                                            "bookCode": "66774",
+                                                  },
+                                                  {
+                                                            "id": 5,
+                                                            "bookName": "Testing and Maintenance of Electrical Equipment",
+                                                            "bookCode": "66775",
+                                                  },
+                                                  {
+                                                            "id": 6,
+                                                            "bookName": "Instrumentation and Process Control",
+                                                            "bookCode": "66863",
+                                                  },
+                                                  {
+                                                            "id": 7,
+                                                            "bookName": "Innovation & Entrepreneurship",
+                                                            "bookCode": "65853",
+                                                  },
+                                        ],
                               },
                     ]
           },
@@ -367,34 +582,12 @@ export const BooksList = [
                               {
                                         "id": 1,
                                         "semester": "1st Semester",
-                                        "bookList": [
-                                                  {
-                                                            "id": 1,
-                                                            "bookName": "Computer Fundamentals",
-                                                            "bookCode": "CSE 1101",
-                                                  },
-                                                  {
-                                                            "id": 2,
-                                                            "bookName": "Computer Fundamentals",
-                                                            "bookCode": "CSE 1101",
-                                                  },
-                                        ],
+                                        "bookList": [],
                               },
                               {
                                         "id": 2,
                                         "semester": "2nd Semester",
-                                        "bookList": [
-                                                  {
-                                                            "id": 1,
-                                                            "bookName": "Computer Fundamentals",
-                                                            "bookCode": "CSE 1101",
-                                                  },
-                                                  {
-                                                            "id": 2,
-                                                            "bookName": "Computer Fundamentals",
-                                                            "bookCode": "CSE 1101",
-                                                  },
-                                        ],
+                                        "bookList": [],
                               },
                               {
                                         "id": 3,
@@ -431,34 +624,12 @@ export const BooksList = [
                               {
                                         "id": 1,
                                         "semester": "1st Semester",
-                                        "bookList": [
-                                                  {
-                                                            "id": 1,
-                                                            "bookName": "Computer Fundamentals",
-                                                            "bookCode": "CSE 1101",
-                                                  },
-                                                  {
-                                                            "id": 2,
-                                                            "bookName": "Computer Fundamentals",
-                                                            "bookCode": "CSE 1101",
-                                                  },
-                                        ],
+                                        "bookList": [],
                               },
                               {
                                         "id": 2,
                                         "semester": "2nd Semester",
-                                        "bookList": [
-                                                  {
-                                                            "id": 1,
-                                                            "bookName": "Computer Fundamentals",
-                                                            "bookCode": "CSE 1101",
-                                                  },
-                                                  {
-                                                            "id": 2,
-                                                            "bookName": "Computer Fundamentals",
-                                                            "bookCode": "CSE 1101",
-                                                  },
-                                        ],
+                                        "bookList": [],
                               },
                               {
                                         "id": 3,
@@ -495,34 +666,12 @@ export const BooksList = [
                               {
                                         "id": 1,
                                         "semester": "1st Semester",
-                                        "bookList": [
-                                                  {
-                                                            "id": 1,
-                                                            "bookName": "Computer Fundamentals",
-                                                            "bookCode": "CSE 1101",
-                                                  },
-                                                  {
-                                                            "id": 2,
-                                                            "bookName": "Computer Fundamentals",
-                                                            "bookCode": "CSE 1101",
-                                                  },
-                                        ],
+                                        "bookList": [],
                               },
                               {
                                         "id": 2,
                                         "semester": "2nd Semester",
-                                        "bookList": [
-                                                  {
-                                                            "id": 1,
-                                                            "bookName": "Computer Fundamentals",
-                                                            "bookCode": "CSE 1101",
-                                                  },
-                                                  {
-                                                            "id": 2,
-                                                            "bookName": "Computer Fundamentals",
-                                                            "bookCode": "CSE 1101",
-                                                  },
-                                        ],
+                                        "bookList": [],
                               },
                               {
                                         "id": 3,
@@ -559,34 +708,12 @@ export const BooksList = [
                               {
                                         "id": 1,
                                         "semester": "1st Semester",
-                                        "bookList": [
-                                                  {
-                                                            "id": 1,
-                                                            "bookName": "Computer Fundamentals",
-                                                            "bookCode": "CSE 1101",
-                                                  },
-                                                  {
-                                                            "id": 2,
-                                                            "bookName": "Computer Fundamentals",
-                                                            "bookCode": "CSE 1101",
-                                                  },
-                                        ],
+                                        "bookList": [],
                               },
                               {
                                         "id": 2,
                                         "semester": "2nd Semester",
-                                        "bookList": [
-                                                  {
-                                                            "id": 1,
-                                                            "bookName": "Computer Fundamentals",
-                                                            "bookCode": "CSE 1101",
-                                                  },
-                                                  {
-                                                            "id": 2,
-                                                            "bookName": "Computer Fundamentals",
-                                                            "bookCode": "CSE 1101",
-                                                  },
-                                        ],
+                                        "bookList": [],
                               },
                               {
                                         "id": 3,
@@ -623,34 +750,12 @@ export const BooksList = [
                               {
                                         "id": 1,
                                         "semester": "1st Semester",
-                                        "bookList": [
-                                                  {
-                                                            "id": 1,
-                                                            "bookName": "Computer Fundamentals",
-                                                            "bookCode": "CSE 1101",
-                                                  },
-                                                  {
-                                                            "id": 2,
-                                                            "bookName": "Computer Fundamentals",
-                                                            "bookCode": "CSE 1101",
-                                                  },
-                                        ],
+                                        "bookList": [],
                               },
                               {
                                         "id": 2,
                                         "semester": "2nd Semester",
-                                        "bookList": [
-                                                  {
-                                                            "id": 1,
-                                                            "bookName": "Computer Fundamentals",
-                                                            "bookCode": "CSE 1101",
-                                                  },
-                                                  {
-                                                            "id": 2,
-                                                            "bookName": "Computer Fundamentals",
-                                                            "bookCode": "CSE 1101",
-                                                  },
-                                        ],
+                                        "bookList": [],
                               },
                               {
                                         "id": 3,
@@ -687,34 +792,12 @@ export const BooksList = [
                               {
                                         "id": 1,
                                         "semester": "1st Semester",
-                                        "bookList": [
-                                                  {
-                                                            "id": 1,
-                                                            "bookName": "Computer Fundamentals",
-                                                            "bookCode": "CSE 1101",
-                                                  },
-                                                  {
-                                                            "id": 2,
-                                                            "bookName": "Computer Fundamentals",
-                                                            "bookCode": "CSE 1101",
-                                                  },
-                                        ],
+                                        "bookList": [],
                               },
                               {
                                         "id": 2,
                                         "semester": "2nd Semester",
-                                        "bookList": [
-                                                  {
-                                                            "id": 1,
-                                                            "bookName": "Computer Fundamentals",
-                                                            "bookCode": "CSE 1101",
-                                                  },
-                                                  {
-                                                            "id": 2,
-                                                            "bookName": "Computer Fundamentals",
-                                                            "bookCode": "CSE 1101",
-                                                  },
-                                        ],
+                                        "bookList": [],
                               },
                               {
                                         "id": 3,
