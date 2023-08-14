@@ -7,12 +7,12 @@ import GroupResult from './pages/GroupResult/GroupResult';
 import Preloader from './shared/Preloader/Preloader';
 import Developer from './pages/Developer/Developer';
 import CGPACalculator from './pages/CGPACalculator/CGPACalculator';
-import Navbar from './shared/Navbar/Navbar';
-import ResultForm from './pages/IndividualResult/ResultForm';
 import ResultForm1 from './pages/V1/ResultForm';
 import BookList from './pages/BookList/BookList';
 import Department from './pages/BookList/Department';
 import Books from './pages/BookList/Books';
+import SingleResult from './pages/IndividualResult/SingleResult';
+import BottomNav from './shared/Navbar/BottomNav';
 
 const router = createBrowserRouter(
   [
@@ -22,11 +22,7 @@ const router = createBrowserRouter(
     },
     {
       path: '/individualResult',
-      element:
-        <>
-          <Navbar />
-          <ResultForm />
-        </>,
+      element: <SingleResult />,
     },
     {
       path: '/groupResults',
@@ -38,15 +34,27 @@ const router = createBrowserRouter(
     },
     {
       path: '/bookList',
-      element: <BookList />,
+      element:
+        <>
+          <BottomNav />
+          <BookList />
+        </>,
     },
     {
       path: '/bookList/:department',
-      element: <Department />,
+      element:
+        <>
+          <BottomNav />
+          <Department />
+        </>,
     },
     {
       path: '/bookList/:department/:semester',
-      element: <Books />,
+      element:
+        <>
+          <BottomNav />
+          <Books />
+        </>,
     },
     {
       path: '/dev',

@@ -9,9 +9,9 @@ export default function Group() {
     <section
       className="bg-base-100 body-font pb-4 md:pb-16"
     >
-      <div className="hero bg-base-200 pb-8 md:pb-0">
+      <div className="hero bg-gray-100 pb-8 md:pb-0">
         <div className="hero-content flex-col justify-between lg:flex-row">
-          <Fade right distance="20px">
+          <Fade bottom distance="20px">
             <div className="w-full md:w-2/3 lg:w-1/3 rounded overflow-hidden lg:ml-6">
               <div className="outline-none h-full">
                 <img
@@ -22,7 +22,7 @@ export default function Group() {
               </div>
             </div>
           </Fade>
-          <Fade left distance="30px">
+          <Fade bottom distance="30px">
             <div className="lg:w-1/2 pt-11 lg:pt-0 leading-loose">
               <h1 className="text-3xl md:text-5xl lg:text-5xl font-bold leading-tight">
                 View your group results together in a list.

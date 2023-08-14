@@ -1,14 +1,14 @@
 import React from 'react'
 import Navbar from '../../shared/Navbar/Navbar'
-import CalculatorForm from './CalculatorForm'
+import ResultForm from './ResultForm'
 import BottomNav from '../../shared/Navbar/BottomNav'
 
-export default function CGPACalculator() {
+export default function SingleResult() {
           return (
                     <>
                               <Navbar />
                               <BottomNav />
-                              <CalculatorForm />
+                              <ResultForm />
                     </>
           )
 }

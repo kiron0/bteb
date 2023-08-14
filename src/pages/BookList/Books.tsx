@@ -9,7 +9,7 @@ export default function Books() {
           useScrollToTop();
 
           return (
-                    <div className='pb-10'>
+                    <div className='pb-32 md:pb-0'>
                               <h1 className='text-center py-10 text-2xl md:text-3xl font-bold px-3 md:w-3/4 mx-auto'>Polytechnic <span className='capitalize text-error'>{
                                         BooksList.map(book => {
                                                   return (
@@ -19,9 +19,8 @@ export default function Books() {
                                                   )
                                         })
                               }</span> <span className='text-success'>{semester}</span> semester Book List</h1>
-                              <div className='flex justify-center items-center gap-5'>
+                              <div className='flex justify-center items-center'>
                                         <button onClick={() => navigate(-1)} className='glass btn btn-sm md:btn-md text-black mb-8 gap-1'><i className='bx bx-arrow-back text-xl'></i>Go Back</button>
-                                        <button onClick={() => navigate("/")} className='glass btn btn-sm md:btn-md text-black mb-8 gap-1'><i className='bx bx-home-heart text-xl'></i>Go Home</button>
                               </div>
                               <p className='text-center py-4 pb-6 font-bold'>
                                         Here is your Book List
