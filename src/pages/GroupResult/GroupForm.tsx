@@ -148,7 +148,7 @@ export default function GroupForm() {
                                                                       {
                                                                                 finalResult?.results?.length > 0 && (
                                                                                           <div className="card-actions justify-center my-10">
-                                                                                                    <button className="btn btn-sm glass text-black flex items-center gap-1" onClick={() => setFinalResult("" as any)}><TbReload className='text-lg' /> Search Again</button>
+                                                                                                    <button className={`btn btn-sm glass ${theme ? 'text-white' : 'text-black'} flex items-center gap-1`} onClick={() => setFinalResult("" as any)}><TbReload className='text-lg' /> Search Again</button>
                                                                                           </div>
                                                                                 )
                                                                       }
@@ -194,7 +194,7 @@ export default function GroupForm() {
                                                                                                                                                       <select
                                                                                                                                                                 name='reg'
                                                                                                                                                                 className={`select focus:outline-none bg-base-100 w-full ${theme ? 'text-white' : 'text-black'}`}
-                                                                                                                                                                defaultValue={2022}
+                                                                                                                                                                defaultValue={2016}
                                                                                                                                                       >
                                                                                                                                                                 {
                                                                                                                                                                           examType && (
@@ -218,7 +218,7 @@ export default function GroupForm() {
                                                                                                                                                                 name='sem'
                                                                                                                                                                 className={`select focus:outline-none bg-base-100 w-full ${theme ? 'text-white' : 'text-black'}`}
                                                                                                                                                                 required
-                                                                                                                                                                defaultValue="4th"
+                                                                                                                                                                defaultValue="6th"
                                                                                                                                                       >
                                                                                                                                                                 <option>1st</option>
                                                                                                                                                                 <option>2nd</option>
@@ -238,14 +238,14 @@ export default function GroupForm() {
                                                                                                                                             </div>
                                                                                                                                             <div className={`input-group flex items-center my-2 border p-3 rounded-md mt-2 ${boardError && "border-error shadow-error outline-error"}`}>
                                                                                                                                                       <div className="icon">
-                                                                                                                                                                <i className="bx bxs-pen"></i>
+                                                                                                                                                                <i className={`bx bxs-pen ${theme ? 'text-white' : 'text-black'}`}></i>
                                                                                                                                                       </div>
                                                                                                                                                       <input
                                                                                                                                                                 type="text"
                                                                                                                                                                 name="rollNo"
                                                                                                                                                                 onChange={handleBoardRoll}
                                                                                                                                                                 onKeyDown={(e) => { e.key === 'Enter' && boardError && e.preventDefault() }}
-                                                                                                                                                                className="form-control outline-none pl-4 w-full bg-transparent"
+                                                                                                                                                                className={`form-control outline-none pl-4 w-full bg-transparent ${theme ? 'text-white' : 'text-black'}`}
                                                                                                                                                                 placeholder="e.g. 921711-921714,921716,921723-921726"
                                                                                                                                                       />
                                                                                                                                             </div>
