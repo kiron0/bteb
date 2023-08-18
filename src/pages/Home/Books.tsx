@@ -34,7 +34,7 @@ export default function Books() {
                                                                                 You can see any book list by the semester wise. Just select the semester and see the book list. It's that simple.
                                                                       </p>
                                                                       <div className='flex justify-center md:justify-start items-center'>
-                                                                                <Link to="/bookList" className="btn btn-primary text-white">
+                                                                                <Link to="/bookList" className="btn btn-primary duration-500 bg-transparent text-primary hover:border-primary hover:bg-primary hover:text-white">
                                                                                           Check Book List
                                                                                 </Link>
                                                                       </div>

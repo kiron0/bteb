@@ -25,7 +25,7 @@ export default function BookList() {
                                                   {
                                                             BooksList.map((book, index) => {
                                                                       return (
-                                                                                <div className={`glass duration-500 ${theme ? 'md:bg-gray-800 text-white' : 'md:bg-gray-200 text-black'} w-full md:px-10 py-20 rounded-lg cursor-pointer`} key={index} onClick={() => {
+                                                                                <div className={`glass duration-500 ${theme ? 'md:bg-gray-800 text-white' : 'text-black shadow-md'} w-full md:px-10 py-20 rounded-lg hover:bg-primary hover:text-white cursor-pointer`} key={index} onClick={() => {
                                                                                           navigate(`/bookList/${book.slug}`)
                                                                                 }}>
                                                                                           <h1 className='text-lg font-bold text-center capitalize'>{book.department}</h1>

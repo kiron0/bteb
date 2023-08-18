@@ -34,7 +34,7 @@ export default function CGPA() {
                 You can figure out your required GPA for your upcoming semesters to reach your target CGPA.
               </p>
               <div className='flex justify-center md:justify-start items-center'>
-                <Link to="/cgpaCalc" className="btn btn-primary text-white">
+                <Link to="/cgpaCalc" className="btn btn-primary duration-500 bg-transparent text-primary hover:border-primary hover:bg-primary hover:text-white">
                   Open Calculator
                 </Link>
               </div>

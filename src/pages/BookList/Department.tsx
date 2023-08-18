@@ -15,7 +15,7 @@ export default function Department() {
           const { theme } = useContext(InitializeContext);
 
           return (
-                    <Fade top distance="20px">
+                    <Fade bottom distance="20px">
                               <div className='bg-base-100 pb-32 lg:h-screen'>
                                         <h1 className={`${theme ? 'text-white' : 'text-black'} text-center py-10 text-2xl md:text-3xl font-bold px-3 md:w-3/4 mx-auto`}>Polytechnic <span className='capitalize text-error'>
                                                   {
@@ -42,7 +42,7 @@ export default function Department() {
                                                                                           {
                                                                                                     book.semesterWiseBooks.map((book, index) => {
                                                                                                               return (
-                                                                                                                        <div className={`glass duration-500 ${theme ? 'md:bg-gray-800 text-white' : 'md:bg-gray-200 text-black'} w-full py-20 rounded-lg cursor-pointer`} key={index} onClick={() => {
+                                                                                                                        <div className={`glass duration-500 ${theme ? 'md:bg-gray-800 text-white' : 'text-black shadow-md'} w-full md:px-10 py-20 rounded-lg hover:bg-primary hover:text-white cursor-pointer`} key={index} onClick={() => {
                                                                                                                                   navigate(`/bookList/${department}/${book.semester.slice(0, 3)}`)
                                                                                                                         }}>
                                                                                                                                   <h1 className='text-lg font-bold text-center capitalize'>{book.semester}</h1>

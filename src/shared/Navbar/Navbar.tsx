@@ -13,32 +13,32 @@ export default function Navbar() {
                     <>
                               <li className='lg:mr-6 py-2 lg:py-0'>
                                         <NavLink to="/individualResult" className={({ isActive }) =>
-                                                  isActive ? "text-white btn btn-primary" : `hover:bg-primary duration-300 btn glass ${theme ? 'text-white' : 'text-black'}`
+                                                  isActive ? "text-white btn btn-primary" : `hover:bg-primary hover:text-white duration-300 btn glass ${theme ? 'text-white' : 'text-black'}`
                                         }>Individual Result</NavLink>
                               </li>
                               <li className='lg:mr-6 py-2 lg:py-0'>
                                         <NavLink to="/groupResults" className={({ isActive }) =>
-                                                  isActive ? "text-white btn btn-primary" : ` hover:bg-primary duration-300 btn glass ${theme ? 'text-white' : 'text-black'}`
+                                                  isActive ? "text-white btn btn-primary" : ` hover:bg-primary hover:text-white duration-300 btn glass ${theme ? 'text-white' : 'text-black'}`
                                         }>Group Result</NavLink>
                               </li>
                               <li className='lg:mr-6 py-2 lg:py-0'>
                                         <NavLink to="/cgpaCalc" className={({ isActive }) =>
-                                                  isActive ? "text-white btn btn-primary" : ` hover:bg-primary duration-300 btn glass ${theme ? 'text-white' : 'text-black'}`
+                                                  isActive ? "text-white btn btn-primary" : ` hover:bg-primary hover:text-white duration-300 btn glass ${theme ? 'text-white' : 'text-black'}`
                                         }>CGPA Calculator</NavLink>
                               </li>
                               <li className='lg:mr-6 py-2 lg:py-0'>
                                         <NavLink to="/bookList" className={({ isActive }) =>
-                                                  isActive ? "text-white btn btn-primary" : ` hover:bg-primary duration-300 btn glass ${theme ? 'text-white' : 'text-black'}`
+                                                  isActive ? "text-white btn btn-primary" : ` hover:bg-primary hover:text-white duration-300 btn glass ${theme ? 'text-white' : 'text-black'}`
                                         }>Book List</NavLink>
                               </li>
                               <li className='md:hidden py-2 lg:py-0'>
                                         <NavLink to="/dev" className={({ isActive }) =>
-                                                  isActive ? "text-white btn btn-primary" : ` hover:bg-primary duration-300 btn glass ${theme ? 'text-white' : 'text-black'}`
+                                                  isActive ? "text-white btn btn-primary" : ` hover:bg-primary hover:text-white duration-300 btn glass ${theme ? 'text-white' : 'text-black'}`
                                         }>Developer</NavLink>
                               </li>
                               <li className='py-2 lg:py-0'>
                                         <NavLink to="/v1/individualResult" className={({ isActive }) =>
-                                                  isActive ? "text-white btn btn-primary" : ` hover:bg-primary duration-300 btn glass ${theme ? 'text-white' : 'text-black'}`
+                                                  isActive ? "text-white btn btn-primary" : ` hover:bg-primary hover:text-white duration-300 btn glass ${theme ? 'text-white' : 'text-black'}`
                                         }>V1</NavLink>
                               </li>
                     </>
@@ -64,7 +64,7 @@ export default function Navbar() {
                               </div>
                               <div className="navbar-end hidden md:flex gap-2">
                                         <ToggleTheme />
-                                        <Link to="/dev" className={` hover:bg-primary duration-300 btn glass ${theme ? 'text-white' : 'text-black'}`}>Developer</Link>
+                                        <Link to="/dev" className={` hover:bg-primary hover:text-white duration-300 btn glass ${theme ? 'text-white' : 'text-black'}`}>Developer</Link>
                               </div>
                     </div>
           )
