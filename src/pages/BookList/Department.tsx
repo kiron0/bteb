@@ -29,7 +29,7 @@ export default function Department() {
                                                   }
                                         </span> Department Book List</h1>
                                         <div className='flex justify-center items-center'>
-                                                  <button onClick={() => navigate(-1)} className={`glass btn btn-sm md:btn-md ${theme ? 'text-white' : 'text-black'} mb-8 gap-1`}><i className='bx bx-arrow-back text-xl'></i>Go Back</button>
+                                                  <button onClick={() => navigate(-1)} className={`glass btn btn-sm md:btn-md ${theme ? 'text-white' : 'text-black'} mb-8 gap-1`}><i className='bx bx-arrow-back text-xl'></i>Back</button>
                                         </div>
                                         <p className={`text-center pb-6 font-bold ${theme ? 'text-white' : 'text-black'}`}>
                                                   Select Your Semester to See Your Book List

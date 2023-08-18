@@ -27,9 +27,9 @@ export default function Books() {
                                                   })
                                         }</span> <span className='text-success'>{semester}</span> semester Book List</h1>
                                         <div className='flex justify-center items-center'>
-                                                  <button onClick={() => navigate(-1)} className={`glass btn btn-sm md:btn-md ${theme ? 'text-white' : 'text-black'} mb-8 gap-1`}><i className='bx bx-arrow-back text-xl'></i>Go Back</button>
+                                                  <button onClick={() => navigate(-1)} className={`glass btn btn-sm md:btn-md ${theme ? 'text-white' : 'text-black'} mb-8 gap-1`}><i className='bx bx-arrow-back text-xl'></i>Back</button>
                                         </div>
-                                        <p className={`${theme ? 'text-white' : 'text-black'} text-center py-4 pb-6 font-bold`}>
+                                        <p className={`${theme ? 'text-white' : 'text-black'} text-center pb-6 font-bold`}>
                                                   Here is your Book List
                                         </p>
                                         {
@@ -56,7 +56,7 @@ export default function Books() {
                                                                                                                                                                                     return (
                                                                                                                                                                                               <tr>
                                                                                                                                                                                                         <th className={`${book?.optional && 'text-error'}`}>{index + 1}</th>
-                                                                                                                                                                                                        <td className={`${book?.optional && 'text-error'}`}>{book.bookName}</td>
+                                                                                                                                                                                                        <td className={`capitalize ${book?.optional && 'text-error'}`}>{book.bookName}</td>
                                                                                                                                                                                                         <td className={`text-center ${book?.optional && 'text-error'}`}>{book.bookCode}</td>
                                                                                                                                                                                               </tr>
                                                                                                                                                                                     )
