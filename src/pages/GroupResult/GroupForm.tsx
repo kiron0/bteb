@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Swal from 'sweetalert2';
 import moment from 'moment';
 import { toast } from 'react-hot-toast';
@@ -8,11 +8,13 @@ import GroupResultTab from './GroupResultTab';
 import useScrollToTop from '../../hooks/useScrollToTop';
 import { TbReload } from 'react-icons/tb';
 import Footer from '../../shared/Footer/Footer';
+import { InitializeContext } from '../../App';
 
 const Fade = require("react-reveal/Fade");
 
 export default function GroupForm() {
           useScrollToTop();
+          const { theme } = useContext(InitializeContext);
           const [finalResult, setFinalResult] = useState({} as any);
           const [loading, setLoading] = useState<boolean>(false);
           const [examType, setExamType] = useState([
@@ -140,9 +142,9 @@ export default function GroupForm() {
                     <Fade top distance="20px">
                               <div className='md:py-12 pb-16 md:pb-0'>
                                         <div className='flex justify-center items-center w-full'>
-                                                  <div className='w-full md:w-10/12 max-w-4xl md:glass rounded-xl pb-6'>
+                                                  <div className={`w-full md:w-10/12 max-w-4xl ${theme ? 'md:border' : 'md:glass'} rounded-xl pb-6`}>
                                                             <div className="card-body p-3 md:p-0">
-                                                                      <h2 className='text-3xl text-center pt-10 font-semibold'>Group Result</h2>
+                                                                      <h2 className={`text-3xl text-center pt-10 font-semibold ${theme ? 'text-white' : 'text-black'}`}>Group Result</h2>
                                                                       {
                                                                                 finalResult?.results?.length > 0 && (
                                                                                           <div className="card-actions justify-center my-10">
@@ -162,15 +164,15 @@ export default function GroupForm() {
                                                                                                                         <form onSubmit={handleResult} className='mt-6 w-full md:px-6'>
                                                                                                                                   <div className="name border rounded p-3 relative mt-10 w-full">
                                                                                                                                             <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
-                                                                                                                                                      <h3 className="text-xs font-poppins">Select Exam</h3>
+                                                                                                                                                      <h3 className={`${theme ? 'text-white' : 'text-black'} text-xs font-poppins`}>Select Exam</h3>
                                                                                                                                             </div>
-                                                                                                                                            <div className="input-group flex items-center my-2 border p-3 rounded-md mt-2">
+                                                                                                                                            <div className="input-group flex items-center my-2 border p-3 rounded-md mt-2 overflow-hidden">
                                                                                                                                                       <div className="icon">
-                                                                                                                                                                <i className="bx bx-detail"></i>
+                                                                                                                                                                <i className={`bx bx-detail ${theme ? 'text-white' : 'text-black'}`}></i>
                                                                                                                                                       </div>
                                                                                                                                                       <select
                                                                                                                                                                 name='exam'
-                                                                                                                                                                className="select focus:outline-none bg-transparent w-full"
+                                                                                                                                                                className={`select focus:outline-none bg-base-100 w-full ${theme ? 'text-white' : 'text-black'}`}
                                                                                                                                                                 defaultValue="Diploma In Engineering"
                                                                                                                                                                 onChange={handleExamChange}
                                                                                                                                                                 onKeyDown={(e) => { e.key === 'Enter' && e.preventDefault() }}
@@ -183,15 +185,15 @@ export default function GroupForm() {
 
                                                                                                                                   <div className="name border rounded p-3 relative mt-10 w-full">
                                                                                                                                             <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
-                                                                                                                                                      <h3 className="text-xs font-poppins">Select Regulation</h3>
+                                                                                                                                                      <h3 className={`${theme ? 'text-white' : 'text-black'} text-xs font-poppins`}>Select Regulation</h3>
                                                                                                                                             </div>
-                                                                                                                                            <div className="input-group flex items-center my-2 border p-3 rounded-md mt-2">
+                                                                                                                                            <div className="input-group flex items-center my-2 border p-3 rounded-md mt-2 overflow-hidden">
                                                                                                                                                       <div className="icon">
-                                                                                                                                                                <i className="bx bx-detail"></i>
+                                                                                                                                                                <i className={`bx bx-detail ${theme ? 'text-white' : 'text-black'}`}></i>
                                                                                                                                                       </div>
                                                                                                                                                       <select
                                                                                                                                                                 name='reg'
-                                                                                                                                                                className="select focus:outline-none bg-transparent w-full"
+                                                                                                                                                                className={`select focus:outline-none bg-base-100 w-full ${theme ? 'text-white' : 'text-black'}`}
                                                                                                                                                                 defaultValue={2022}
                                                                                                                                                       >
                                                                                                                                                                 {
@@ -206,15 +208,15 @@ export default function GroupForm() {
                                                                                                                                   </div>
                                                                                                                                   <div className="name border rounded p-3 relative mt-10 w-full">
                                                                                                                                             <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
-                                                                                                                                                      <h3 className="text-xs font-poppins">Select Semester</h3>
+                                                                                                                                                      <h3 className={`${theme ? 'text-white' : 'text-black'} text-xs font-poppins`}>Select Semester</h3>
                                                                                                                                             </div>
-                                                                                                                                            <div className="input-group flex items-center my-2 border p-3 rounded-md mt-2">
+                                                                                                                                            <div className="input-group flex items-center my-2 border p-3 rounded-md mt-2 overflow-hidden">
                                                                                                                                                       <div className="icon">
-                                                                                                                                                                <i className="bx bx-detail"></i>
+                                                                                                                                                                <i className={`bx bx-detail ${theme ? 'text-white' : 'text-black'}`}></i>
                                                                                                                                                       </div>
                                                                                                                                                       <select
                                                                                                                                                                 name='sem'
-                                                                                                                                                                className="select focus:outline-none bg-transparent w-full"
+                                                                                                                                                                className={`select focus:outline-none bg-base-100 w-full ${theme ? 'text-white' : 'text-black'}`}
                                                                                                                                                                 required
                                                                                                                                                                 defaultValue="4th"
                                                                                                                                                       >
@@ -232,7 +234,7 @@ export default function GroupForm() {
 
                                                                                                                                   <div className="name border rounded p-3 relative mt-10">
                                                                                                                                             <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
-                                                                                                                                                      <h3 className="text-xs font-poppins">Roll Numbers</h3>
+                                                                                                                                                      <h3 className={`${theme ? 'text-white' : 'text-black'} text-xs font-poppins`}>Roll Numbers</h3>
                                                                                                                                             </div>
                                                                                                                                             <div className={`input-group flex items-center my-2 border p-3 rounded-md mt-2 ${boardError && "border-error shadow-error outline-error"}`}>
                                                                                                                                                       <div className="icon">
@@ -255,7 +257,7 @@ export default function GroupForm() {
                                                                                                                                   </div>
 
                                                                                                                                   <div className="modal-action">
-                                                                                                                                            <button className={`btn btn-sm md:btn-md glass text-black flex gap-2 ${boardError && "btn-disabled text-gray-400"}`} type="submit">
+                                                                                                                                            <button className={`btn btn-sm md:btn-md glass ${theme ? 'text-white' : 'text-black'} flex gap-2 ${boardError && "btn-disabled text-gray-400"}`} type="submit">
                                                                                                                                                       <i className="bx bx-id-card text-lg"></i> View Result
                                                                                                                                             </button>
 
@@ -269,7 +271,7 @@ export default function GroupForm() {
                                                                       }
 
                                                                       <div className='mt-6 md:mx-6'>
-                                                                                <small className='text-xs select-none'>
+                                                                                <small className={`text-xs select-none ${theme ? 'text-white' : 'text-black'}`}>
                                                                                           <span className='font-bold text-sm'>Note:</span> Results are displayed using pdf searching algorithm. The result is shown by searching from the PDF published by "BTEB". <span className='font-semibold'>The developer or this web site is not responsible for any misinformation.</span>
                                                                                 </small>
                                                                       </div>

@@ -582,7 +582,13 @@ export const BooksList = [
                               {
                                         "id": 1,
                                         "semester": "1st Semester",
-                                        "bookList": [],
+                                        "bookList": [
+                                                  {
+                                                            "id": 1,
+                                                            "bookName": "Basic Electricity",
+                                                            "bookCode": "66711",
+                                                  },
+                                        ],
                               },
                               {
                                         "id": 2,
@@ -745,7 +751,7 @@ export const BooksList = [
           {
                     "id": 7,
                     "slug": "rac",
-                    "department": "refrigeration and air conditioning",
+                    "department": "RAC",
                     "semesterWiseBooks": [
                               {
                                         "id": 1,

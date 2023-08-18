@@ -32,24 +32,12 @@
   box-shadow: 0 4px 30px rgba(63, 65, 67, 0.6);
 }
 
-.socialLinks .messenger {
-  background: linear-gradient(45deg, #0695ff, #a334fa, #ff6968);
-  box-shadow: 0 4px 30px rgba(255, 105, 104, 0.5);
+.socialLinks .github {
+  background: linear-gradient(45deg, #333333, #626b73);
+  box-shadow: 0 4px 30px rgba(63, 65, 67, 0.6);
 }
 
-.socialLinks .instagram {
-  background: linear-gradient(
-    45deg,
-    #5851db,
-    #833ab4,
-    #c13584,
-    #e1306c,
-    #fd1d1d
-  );
-  box-shadow: 0 4px 30px rgba(120, 64, 190, 0.6);
-}
-
-.socialLinks .facebook {
-  background: linear-gradient(45deg, #3b5998, #0078d7);
-  box-shadow: 0 4px 30px rgba(43, 98, 169, 0.5);
+.socialLinks .linkedin {
+  background: linear-gradient(45deg, #0077b5, #0077b5);
+  box-shadow: 0 4px 30px rgba(0, 119, 181, 0.5);
 }

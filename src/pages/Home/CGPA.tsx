@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
 import bannerImg from "../../assets/calculator.svg";
+import { InitializeContext } from '../../App';
 
 const Fade = require("react-reveal/Fade");
 
 export default function CGPA() {
+  const { theme } = useContext(InitializeContext);
+
   return (
     <section
       className="bg-base-100 body-font pb-4 md:pb-16"
@@ -24,10 +27,10 @@ export default function CGPA() {
           </Fade>
           <Fade bottom distance="30px">
             <div className="lg:w-1/2 pt-11 lg:pt-0 leading-loose">
-              <h1 className="text-3xl md:text-5xl lg:text-5xl font-bold leading-tight">
+              <h1 className={`text-3xl md:text-5xl lg:text-5xl font-bold leading-tight ${theme ? 'text-white' : 'text-black'}`}>
                 Calculate your destinations in CGPA Calculator.
               </h1>
-              <p className="py-6 text-lg">
+              <p className={`py-6 text-lg ${theme ? 'text-white' : 'text-black'}`}>
                 You can figure out your required GPA for your upcoming semesters to reach your target CGPA.
               </p>
               <div className='flex justify-center md:justify-start items-center'>

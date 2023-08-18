@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { toast } from 'react-hot-toast';
 import Swal from 'sweetalert2';
 import useScrollToTop from '../../hooks/useScrollToTop';
 import Footer from '../../shared/Footer/Footer';
+import { InitializeContext } from '../../App';
 
 const Fade = require("react-reveal/Fade");
 
 export default function CalculatorForm() {
   useScrollToTop();
+  const { theme } = useContext(InitializeContext);
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const pressedKey = e.key;
@@ -47,9 +49,9 @@ export default function CalculatorForm() {
       return toast.error('Please fill all the fields', {
         style: {
           padding: '16px',
-          color: '#000',
           borderRadius: '10px',
-          background: '#fff3cd',
+          background: `${theme ? '#333' : ''}`,
+          color: `${theme ? '#fff' : ''}`,
         },
         duration: 3000,
       });
@@ -57,9 +59,9 @@ export default function CalculatorForm() {
       return toast.error('Please enter a valid gpa', {
         style: {
           padding: '16px',
-          color: '#000',
           borderRadius: '10px',
-          background: '#fff3cd',
+          background: `${theme ? '#333' : ''}`,
+          color: `${theme ? '#fff' : ''}`,
         },
         duration: 3000,
       });
@@ -67,9 +69,9 @@ export default function CalculatorForm() {
       return toast.error('GPA cannot be more than 4', {
         style: {
           padding: '16px',
-          color: '#000',
           borderRadius: '10px',
-          background: '#fff3cd',
+          background: `${theme ? '#333' : ''}`,
+          color: `${theme ? '#fff' : ''}`,
         },
         duration: 3000,
       });
@@ -80,6 +82,8 @@ export default function CalculatorForm() {
           title: `Your CGPA is: ${total.toFixed(2)}`,
           text: `This calculation is based on ${reg} regulation.`,
           icon: 'success',
+          background: `${theme ? '#333' : ''}`,
+          color: `${theme ? '#fff' : ''}`,
           showConfirmButton: false,
           showCloseButton: true,
           allowOutsideClick: false,
@@ -93,6 +97,8 @@ export default function CalculatorForm() {
           title: `Your CGPA is: ${total.toFixed(2)}`,
           text: `This calculation is based on ${reg} regulation.`,
           icon: 'success',
+          background: `${theme ? '#333' : ''}`,
+          color: `${theme ? '#fff' : ''}`,
           showConfirmButton: false,
           showCloseButton: true,
           allowOutsideClick: false,
@@ -105,6 +111,8 @@ export default function CalculatorForm() {
           title: `Your CGPA is: ${total.toFixed(2)}`,
           text: `This calculation is based on ${reg} regulation.`,
           icon: 'success',
+          background: `${theme ? '#333' : ''}`,
+          color: `${theme ? '#fff' : ''}`,
           showConfirmButton: false,
           showCloseButton: true,
           allowOutsideClick: false,
@@ -115,9 +123,9 @@ export default function CalculatorForm() {
         return toast.error('Please select a regulation', {
           style: {
             padding: '16px',
-            color: '#000',
             borderRadius: '10px',
-            background: '#fff3cd',
+            background: `${theme ? '#333' : ''}`,
+            color: `${theme ? '#fff' : ''}`,
           },
           duration: 3000,
         });
@@ -134,22 +142,22 @@ export default function CalculatorForm() {
     <Fade top duration={1000} distance="40px">
       <div className='md:py-12 pb-16 md:pb-0'>
         <div className='flex flex-col lg:flex-row justify-center items-center gap-16'>
-          <div className='card w-full md:w-2/3 lg:w-1/3 md:glass'>
+          <div className={`card w-full md:w-2/3 lg:w-1/3 ${theme ? 'md:border' : 'md:glass'}`}>
             <div className='px-4 py-10 md:card-body'>
-              <div className={`flex flex-col justify-center items-center md:pt-7 select-none text-black`}>
+              <div className={`flex flex-col justify-center items-center md:pt-7 select-none ${theme ? 'text-white' : 'text-black'}`}>
                 <h2 className="text-2xl md:text-3xl font-bold">CGPA Calculator</h2>
                 <form onSubmit={handleCalculate} id='cgpaCalc' className='mt-2 w-full md:px-6'>
                   <div className="name border rounded p-3 relative mt-10 w-full">
                     <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
                       <h3 className="text-xs font-poppins">Select Regulation</h3>
                     </div>
-                    <div className="input-group flex items-center my-2 border p-3 rounded-md mt-2">
+                    <div className="input-group flex items-center my-2 overflow-hidden border p-3 rounded-md mt-2">
                       <div className="icon">
                         <i className="bx bx-detail"></i>
                       </div>
                       <select
                         name='reg'
-                        className="select focus:outline-none bg-transparent w-full"
+                        className="select focus:outline-none bg-base-100 w-full"
                         defaultValue={2016}
                       >
                         <option>2010</option>
@@ -318,7 +326,7 @@ export default function CalculatorForm() {
                     <span className={`btn btn-sm md:btn-md glass text-red-500 flex justify-center items-center gap-2`} onClick={handleClear}>
                       <i className="bx bx-trash-alt text-lg"></i> AC/Clear
                     </span>
-                    <button className={`btn btn-sm md:btn-md glass text-black flex gap-2 `} type="submit">
+                    <button className={`btn btn-sm md:btn-md glass ${theme ? 'text-white' : 'text-black'} flex gap-2 `} type="submit">
                       <i className="bx bx-calculator text-lg"></i> Calculate
                     </button>
                   </div>
@@ -326,9 +334,9 @@ export default function CalculatorForm() {
               </div>
             </div>
           </div>
-          <div className='card w-full md:w-2/3 lg:w-1/3 md:glass'>
+          <div className={`card w-full md:w-2/3 lg:w-1/3 ${theme ? 'md:border' : 'md:glass'}`}>
             <div className='px-4 pb-10 md:card-body'>
-              <div className={`flex flex-col justify-center items-center md:pt-7 select-none text-black`}>
+              <div className={`flex flex-col justify-center items-center md:pt-7 select-none ${theme ? 'text-white' : 'text-black'}`}>
                 <h2 className="text-xl md:text-2xl font-bold text-center">Semester Wise GPA Priorities For Regulations</h2>
                 <div className="overflow-x-auto mt-6 w-full">
                   <table className="table w-full">

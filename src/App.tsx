@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, createContext } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import Root from './Layouts/Root';
@@ -13,6 +13,8 @@ import Department from './pages/BookList/Department';
 import Books from './pages/BookList/Books';
 import SingleResult from './pages/IndividualResult/SingleResult';
 import BottomNav from './shared/Navbar/BottomNav';
+
+export const InitializeContext = createContext(null as any);
 
 const router = createBrowserRouter(
   [
@@ -73,6 +75,7 @@ const router = createBrowserRouter(
 
 function App() {
   const [loading, setLoading] = useState<boolean>(false);
+  const [theme, setTheme] = useState<boolean>(false);
 
   useEffect(() => {
     setLoading(true);
@@ -82,25 +85,36 @@ function App() {
   }, []);
 
   useEffect(() => {
+    setTheme(JSON.parse(window.localStorage.getItem("btebResult") || false as any));
+  }, []);
+
+  useEffect(() => {
     document.addEventListener("contextmenu", (e) => {
       e.preventDefault();
     });
   }, []);
 
+  const toggleTheme = () => {
+    setTheme(!theme);
+    window.localStorage.setItem("btebResult", !theme as any);
+  };
+
   return (
-    <>
-      {
-        loading ? (
-          <Preloader />
-        ) :
-          (
-            <>
-              <RouterProvider router={router} />
-              <Toaster />
-            </>
-          )
-      }
-    </>
+    <div data-theme={theme ? 'night' : 'emerald'} className="bg-base-100 duration-300">
+      <InitializeContext.Provider value={{ toggleTheme, theme }}>
+        {
+          loading ? (
+            <Preloader />
+          ) :
+            (
+              <>
+                <RouterProvider router={router} />
+                <Toaster />
+              </>
+            )
+        }
+      </InitializeContext.Provider>
+    </div>
   );
 }
 

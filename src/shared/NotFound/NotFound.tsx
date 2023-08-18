@@ -1,9 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import not_found from "../../assets/404.png";
+import useTitle from "../../hooks/useTitle";
 
 const NotFound = () => {
+  useTitle("Not Found");
   const navigate = useNavigate();
+
   return (
     <div className="flex flex-col justify-center items-center h-screen bg-transparent">
       <img src={not_found} alt="" />

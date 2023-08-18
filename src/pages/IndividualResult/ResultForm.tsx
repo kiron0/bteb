@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import Swal from 'sweetalert2';
 import moment from 'moment';
 import { toast } from 'react-hot-toast';
@@ -8,11 +8,13 @@ import IndividualResult from './IndividualResult';
 import useScrollToTop from '../../hooks/useScrollToTop';
 import { TbReload } from 'react-icons/tb';
 import Footer from '../../shared/Footer/Footer';
+import { InitializeContext } from '../../App';
 
 const Fade = require("react-reveal/Fade");
 
 export default function ResultForm() {
           useScrollToTop();
+          const { theme } = useContext(InitializeContext);
           const [finalResult, setFinalResult] = useState({} as any);
           const [loading, setLoading] = useState<boolean>(false);
           const [examType, setExamType] = useState([
@@ -143,13 +145,13 @@ export default function ResultForm() {
                     <Fade top distance="20px">
                               <div className='md:py-12 pb-16 md:pb-0'>
                                         <div className='flex justify-center items-center w-full'>
-                                                  <div className='w-full md:w-10/12 max-w-4xl md:glass rounded-xl pb-6'>
+                                                  <div className={`w-full md:w-10/12 max-w-4xl ${theme ? 'md:border' : 'md:glass'} rounded-xl pb-6`}>
                                                             <div className="card-body p-3 md:p-0">
-                                                                      <h2 className='text-3xl text-center pt-10 font-semibold'>Individual Result</h2>
+                                                                      <h2 className={`text-3xl text-center pt-10 font-semibold ${theme ? 'text-white' : 'text-black'}`}>Individual Result</h2>
                                                                       {
                                                                                 finalResult?.roll && (
                                                                                           <div className="card-actions justify-center mt-10">
-                                                                                                    <button className="btn btn-sm glass text-black flex items-center gap-1" onClick={searchAgain}><TbReload className='text-lg' /> Search Again</button>
+                                                                                                    <button className={`btn btn-sm glass ${theme ? 'text-white' : 'text-black'} flex items-center gap-1`} onClick={searchAgain}><TbReload className='text-lg' /> Search Again</button>
                                                                                           </div>
                                                                                 )
                                                                       }
@@ -167,15 +169,15 @@ export default function ResultForm() {
 
                                                                                                                                   <div className="name border rounded p-3 relative mt-10 w-full">
                                                                                                                                             <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
-                                                                                                                                                      <h3 className="text-xs font-poppins">Select Exam</h3>
+                                                                                                                                                      <h3 className={`${theme ? 'text-white' : 'text-black'} text-xs font-poppins`}>Select Exam</h3>
                                                                                                                                             </div>
-                                                                                                                                            <div className="input-group flex items-center my-2 border p-3 rounded-md mt-2">
+                                                                                                                                            <div className="input-group flex items-center my-2 border p-3 rounded-md mt-2 overflow-hidden">
                                                                                                                                                       <div className="icon">
-                                                                                                                                                                <i className="bx bx-detail"></i>
+                                                                                                                                                                <i className={`bx bx-detail ${theme ? 'text-white' : 'text-black'}`}></i>
                                                                                                                                                       </div>
                                                                                                                                                       <select
                                                                                                                                                                 name='exam'
-                                                                                                                                                                className="select focus:outline-none bg-transparent w-full"
+                                                                                                                                                                className={`select focus:outline-none bg-base-100 w-full ${theme ? 'text-white' : 'text-black'}`}
                                                                                                                                                                 defaultValue="Diploma In Engineering"
                                                                                                                                                                 onChange={handleExamChange}
                                                                                                                                                                 onKeyDown={(e) => { e.key === 'Enter' && e.preventDefault() }}
@@ -187,15 +189,15 @@ export default function ResultForm() {
                                                                                                                                   </div>
                                                                                                                                   <div className="name border rounded p-3 relative mt-10 w-full">
                                                                                                                                             <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
-                                                                                                                                                      <h3 className="text-xs font-poppins">Select Regulation</h3>
+                                                                                                                                                      <h3 className={`${theme ? 'text-white' : 'text-black'} text-xs font-poppins`}>Select Regulation</h3>
                                                                                                                                             </div>
-                                                                                                                                            <div className="input-group flex items-center my-2 border p-3 rounded-md mt-2">
+                                                                                                                                            <div className="input-group flex items-center my-2 border p-3 rounded-md mt-2 overflow-hidden">
                                                                                                                                                       <div className="icon">
-                                                                                                                                                                <i className="bx bx-detail"></i>
+                                                                                                                                                                <i className={`bx bx-detail ${theme ? 'text-white' : 'text-black'}`}></i>
                                                                                                                                                       </div>
                                                                                                                                                       <select
                                                                                                                                                                 name='reg'
-                                                                                                                                                                className="select focus:outline-none bg-transparent w-full"
+                                                                                                                                                                className={`select focus:outline-none bg-base-100 w-full ${theme ? 'text-white' : 'text-black'}`}
                                                                                                                                                                 defaultValue={2016}
                                                                                                                                                       >
                                                                                                                                                                 {
@@ -211,17 +213,17 @@ export default function ResultForm() {
 
                                                                                                                                   <div className="name border rounded p-3 relative mt-10">
                                                                                                                                             <div className="name-title absolute -top-4 bg-base-100 border rounded p-1">
-                                                                                                                                                      <h3 className="text-xs font-poppins">Roll Number</h3>
+                                                                                                                                                      <h3 className={`${theme ? 'text-white' : 'text-black'} text-xs font-poppins`}>Roll Number</h3>
                                                                                                                                             </div>
                                                                                                                                             <div className={`input-group flex items-center my-2 border p-3 rounded-md mt-2 ${boardError && "border-error shadow-error outline-error"}`}>
                                                                                                                                                       <div className="icon">
-                                                                                                                                                                <i className="bx bxs-pen"></i>
+                                                                                                                                                                <i className={`bx bxs-pen ${theme ? 'text-white' : 'text-black'}`}></i>
                                                                                                                                                       </div>
                                                                                                                                                       <input
                                                                                                                                                                 type="number"
                                                                                                                                                                 name="rollNo"
                                                                                                                                                                 onChange={handleBoardRoll}
-                                                                                                                                                                className="form-control outline-none pl-4 w-full bg-transparent"
+                                                                                                                                                                className={`form-control outline-none pl-4 w-full bg-transparent ${theme ? 'text-white' : 'text-black'}`}
                                                                                                                                                                 placeholder="e.g. 971711"
                                                                                                                                                                 onKeyDown={(e) => { e.key === 'Enter' && boardError && e.preventDefault() }}
                                                                                                                                                       />
@@ -234,10 +236,9 @@ export default function ResultForm() {
                                                                                                                                   </div>
 
                                                                                                                                   <div className="modal-action">
-                                                                                                                                            <button className={`btn btn-sm md:btn-md glass text-black flex gap-2 ${boardError && "btn-disabled text-gray-400"}`} type="submit">
+                                                                                                                                            <button className={`btn btn-sm md:btn-md glass ${theme ? 'text-white' : 'text-black'} flex gap-2 ${boardError && "btn-disabled text-gray-400"}`} type="submit">
                                                                                                                                                       <i className="bx bx-id-card text-lg"></i> View Result
                                                                                                                                             </button>
-
                                                                                                                                   </div>
 
                                                                                                                         </form>
@@ -248,7 +249,7 @@ export default function ResultForm() {
                                                                       }
 
                                                                       <div className='mt-6 md:mx-6'>
-                                                                                <small className='text-xs select-none'>
+                                                                                <small className={`text-xs select-none ${theme ? 'text-white' : 'text-black'}`}>
                                                                                           <span className='font-bold text-sm'>Note:</span> Results are displayed using pdf searching algorithm. The result is shown by searching from the PDF published by "BTEB". <span className='font-semibold'>The developer or this web site is not responsible for any misinformation.</span>
                                                                                 </small>
                                                                       </div>

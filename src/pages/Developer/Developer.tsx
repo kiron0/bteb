@@ -1,19 +1,23 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styles from './Developer.module.css'
+import { InitializeContext } from '../../App';
+import useTitle from '../../hooks/useTitle';
 
 const Fade = require("react-reveal/Fade");
 
 export default function Dev() {
+          useTitle('Developer');
+          const { theme } = useContext(InitializeContext);
           const navigate = useNavigate();
 
           return (
                     <Fade top duration={1000} distance="40px">
-                              <div className='flex flex-col justify-center items-center pt-10 md:py-0 md:h-screen'>
+                              <div className='flex flex-col justify-center items-center h-screen'>
                                         <div className='card w-full md:w-2/3 lg:w-1/3 md:glass'>
                                                   <div className='card-body'>
                                                             <div className='pb-6'>
-                                                                      <button onClick={() => navigate("/")} className="flex justify-center items-center gap-1 glass py-0 md:py-2 px-2 md:px-5 mx-auto rounded-xl text-black text-md"><i className="bx bx-arrow-back text-lg"></i>Back</button>
+                                                                      <button onClick={() => navigate("/")} className={`flex justify-center items-center gap-1 glass py-0 md:py-2 px-2 md:px-5 mx-auto rounded-xl ${theme ? 'text-white' : 'text-black'} text-md`}><i className="bx bx-arrow-back text-lg"></i>Back</button>
                                                             </div>
                                                             <Fade top duration={2000} distance="40px">
                                                                       <div className='flex justify-center items-center'>
@@ -23,7 +27,7 @@ export default function Dev() {
                                                                       </div>
                                                             </Fade>
                                                             <Fade top duration={3000} distance="40px">
-                                                                      <div className={`flex flex-col justify-center items-center pt-7 select-none text-black`}>
+                                                                      <div className={`flex flex-col justify-center items-center pt-7 select-none ${theme ? 'text-white' : 'text-black'}`}>
                                                                                 <Fade top duration={3000} distance="40px">
                                                                                           <h2 className="text-2xl md:text-3xl font-bold flex items-center gap-1" title='Toufiq Hasan Kiron'>Toufiq Hasan Kiron
                                                                                                     <svg
@@ -79,15 +83,15 @@ export default function Dev() {
                                                                                 </Fade>
                                                                                 <Fade top duration={3000} distance="40px">
                                                                                           <p className='text-base md:text-lg'>MERN Stack Developer</p>
-                                                                                          <p className='text-xs md:text-sm pb-3'>Hellwet Software, India</p>
+                                                                                          <p className='text-sm md:text-md pb-3'>Hellwet Software, India</p>
                                                                                 </Fade>
                                                                                 <Fade top duration={3000} distance="40px">
-                                                                                          <p className='text-sm md:text-lg text-center md:px-16'>He is known professionally as MERN Stack Developer, Bangladeshi Author & Musical artist. He is aspiring to be a full stack developer with a full stack of snacks.</p>
+                                                                                          <p className='text-md md:text-lg text-center md:px-16'>He is known professionally as MERN Stack Developer, Bangladeshi Author & Musical artist. He is aspiring to be a full stack developer with a full stack of snacks.</p>
                                                                                 </Fade>
 
                                                                                 <Fade top duration={5000} distance="40px">
                                                                                           <div className={`flex justify-center items-center flex-wrap ${styles.socialLinks} mt-6`}>
-                                                                                                    <a href="https://kiron.dev" target="_blank" rel="noreferrer" className={`${styles.website} tooltip inline-flex justify-center items-center text-white relative flex-shrink-0 w-12 h-12 m-3 md:m-4 rounded-xl md:rounded-2xl transition-all duration-300 hover:scale-125 hover:-translate-y-1`} data-tip="Portfolio">
+                                                                                                    <a href="https://toufiqhasankiron.com" target="_blank" rel="noreferrer" className={`${styles.website} tooltip inline-flex justify-center items-center text-white relative flex-shrink-0 w-12 h-12 m-3 md:m-4 rounded-xl md:rounded-2xl transition-all duration-300 hover:scale-125 hover:-translate-y-1`} data-tip="Portfolio">
                                                                                                               <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-world" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#fff" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                                                                                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                                                                                                         <circle cx="12" cy="12" r="9" />
@@ -97,18 +101,20 @@ export default function Dev() {
                                                                                                                         <path d="M12.5 3a17 17 0 0 1 0 18" />
                                                                                                               </svg>
                                                                                                     </a>
-                                                                                                    <a href="https://www.facebook.com/toufiqhasankiron" target="_blank" rel="noreferrer" className={`${styles.facebook} tooltip inline-flex justify-center items-center text-white relative flex-shrink-0 w-12 h-12 m-3 md:m-4 rounded-xl md:rounded-2xl transition-all duration-300 hover:scale-125 hover:-translate-y-1`} data-tip="Facebook">
-                                                                                                              <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-brand-facebook" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#fff" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                                                                                    <a href="https://github.com/kiron0" target="_blank" rel="noreferrer" className={`${styles.github} tooltip inline-flex justify-center items-center text-white relative flex-shrink-0 w-12 h-12 m-3 md:m-4 rounded-xl md:rounded-2xl transition-all duration-300 hover:scale-125 hover:-translate-y-1'`} data-tip="GitHub">
+                                                                                                              <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#fff" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                                                                                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                                                                                        <path d="M7 10v4h3v7h4v-7h3l1 -4h-4V9a1 1 0 0 1 1 -1h3V4h-3a5 5 0 0 0 -5 5v1H7" />
+                                                                                                                        <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
                                                                                                               </svg>
                                                                                                     </a>
-                                                                                                    <a href="https://www.instagram.com/toufiqhasankiron/" target="_blank" rel="noreferrer" className={`${styles.instagram} tooltip inline-flex justify-center items-center text-white relative flex-shrink-0 w-12 h-12 m-3 md:m-4 rounded-xl md:rounded-2xl transition-all duration-300 hover:scale-125 hover:-translate-y-1`} data-tip="Instagram">
-                                                                                                              <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-brand-instagram" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#fff" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                                                                                                    <a href="https://linkedin.com/in/toufiq-hasan-kiron/" target="_blank" rel="noreferrer" className={`${styles.linkedin} tooltip inline-flex justify-center items-center text-white relative flex-shrink-0 w-12 h-12 m-3 md:m-4 rounded-xl md:rounded-2xl transition-all duration-300 hover:scale-125 hover:-translate-y-1`} data-tip='LinkedIn'>
+                                                                                                              <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-brand-linkedin" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#fff" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                                                                                                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                                                                                                        <rect x="4" y="4" width="16" height="16" rx="4" />
-                                                                                                                        <circle cx="12" cy="12" r="3" />
-                                                                                                                        <line x1="16.5" y1="7.5" x2="16.5" y2="7.501" />
+                                                                                                                        <rect x="4" y="4" width="16" height="16" rx="2" />
+                                                                                                                        <line x1="8" y1="11" x2="8" y2="16" />
+                                                                                                                        <line x1="8" y1="8" x2="8" y2="8.01" />
+                                                                                                                        <line x1="12" y1="16" x2="12" y2="11" />
+                                                                                                                        <path d="M16 16v-3a2 2 0 0 0 -4 0" />
                                                                                                               </svg>
                                                                                                     </a>
                                                                                           </div>
