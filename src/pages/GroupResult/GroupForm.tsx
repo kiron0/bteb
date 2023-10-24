@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Swal from 'sweetalert2';
 import moment from 'moment';
 import { toast } from 'react-hot-toast';
@@ -86,12 +86,12 @@ export default function GroupForm() {
                     }
 
                     fetch(`${BASE_API}/resultsGroup?sem=${sem}&roll=${roll}&reg=${reg}&exam=${exam}`, {
-                              method: 'GET',
+                              method: 'POST',
                               headers: {
                                         'Accept': 'application/json',
                                         'Content-Type': 'application/json',
-                                        authorization: `${AUTH_KEY}`
                               },
+                              body: JSON.stringify({ authKey: AUTH_KEY }),
                     })
                               .then(res => res.json())
                               .then(data => {
@@ -105,6 +105,7 @@ export default function GroupForm() {
                                                   setLoading(false);
                                         } else {
                                                   setFinalResult(data);
+                                                  window.localStorage.setItem("btebGroupResult", JSON.stringify(data));
                                                   setLoading(false);
                                                   if (data?.warning) {
                                                             toast.error(`Found from ${data?.regulation} regulation`, {
@@ -124,6 +125,8 @@ export default function GroupForm() {
                               )
           }
 
+          const localData = window.localStorage.getItem("btebGroupResult");
+
           const [boardError, setBoardError] = useState("");
 
           const handleBoardRoll = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -138,6 +141,14 @@ export default function GroupForm() {
                     }
           }
 
+          useEffect(() => {
+                    if (localData) {
+                              setFinalResult(JSON.parse(localData));
+                    } else {
+                              setFinalResult({} as any);
+                    }
+          }, [localData]);
+
           return (
                     <Fade top distance="20px">
                               <div className='md:py-12 pb-16 md:pb-0'>
@@ -148,7 +159,10 @@ export default function GroupForm() {
                                                                       {
                                                                                 finalResult?.results?.length > 0 && (
                                                                                           <div className="card-actions justify-center my-10">
-                                                                                                    <button className={`btn btn-sm glass ${theme ? 'text-white' : 'text-black'} flex items-center gap-1`} onClick={() => setFinalResult("" as any)}><TbReload className='text-lg' /> Search Again</button>
+                                                                                                    <button className={`btn btn-sm glass ${theme ? 'text-white' : 'text-black'} flex items-center gap-1`} onClick={() => {
+                                                                                                              setFinalResult({} as any);
+                                                                                                              window.localStorage.removeItem("btebGroupResult");
+                                                                                                    }}><TbReload className='text-lg' /> Search Again</button>
                                                                                           </div>
                                                                                 )
                                                                       }
@@ -218,7 +232,7 @@ export default function GroupForm() {
                                                                                                                                                                 name='sem'
                                                                                                                                                                 className={`select focus:outline-none bg-base-100 w-full ${theme ? 'text-white' : 'text-black'}`}
                                                                                                                                                                 required
-                                                                                                                                                                defaultValue="6th"
+                                                                                                                                                                defaultValue="7th"
                                                                                                                                                       >
                                                                                                                                                                 <option>1st</option>
                                                                                                                                                                 <option>2nd</option>

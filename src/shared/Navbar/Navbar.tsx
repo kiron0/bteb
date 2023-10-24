@@ -31,16 +31,11 @@ export default function Navbar() {
                                                   isActive ? "text-white btn btn-primary" : ` hover:bg-primary hover:text-white duration-300 btn glass ${theme ? 'text-white' : 'text-black'}`
                                         }>Book List</NavLink>
                               </li>
-                              <li className='md:hidden py-2 lg:py-0'>
-                                        <NavLink to="/dev" className={({ isActive }) =>
-                                                  isActive ? "text-white btn btn-primary" : ` hover:bg-primary hover:text-white duration-300 btn glass ${theme ? 'text-white' : 'text-black'}`
-                                        }>Developer</NavLink>
-                              </li>
-                              <li className='py-2 lg:py-0'>
+                              {/* <li className='py-2 lg:py-0'>
                                         <NavLink to="/v1/individualResult" className={({ isActive }) =>
                                                   isActive ? "text-white btn btn-primary" : ` hover:bg-primary hover:text-white duration-300 btn glass ${theme ? 'text-white' : 'text-black'}`
                                         }>V1</NavLink>
-                              </li>
+                              </li> */}
                     </>
           )
 

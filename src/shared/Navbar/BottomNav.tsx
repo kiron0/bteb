@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { MdSpaceDashboard } from 'react-icons/md';
-import { BiCalculator, BiCode, BiHomeHeart } from 'react-icons/bi';
+import { BiCalculator, BiHomeHeart } from 'react-icons/bi';
 import { HiOutlineDocumentSearch, HiOutlineDocumentText } from 'react-icons/hi';
 import { HiOutlineDocumentMagnifyingGlass } from 'react-icons/hi2';
 import { IoClose } from 'react-icons/io5';
@@ -47,13 +47,9 @@ export default function BottomNav() {
         isActive ? "py-2 px-3 rounded-tl-3xl rounded-br-3xl font-semibold glass bg-primary hover:bg-primary text-white flex flex-col justify-center items-center gap-1" : `py-2 px-3 rounded-tl-3xl rounded-br-3xl font-semibold border border-gray-300 duration-500 ${theme ? 'text-white' : 'text-black'} flex flex-col justify-center items-center gap-1`
       }><GiBookshelf size={25} /><small className='text-xs text-center'>Book List</small></NavLink>
 
-      <NavLink to="/v1/individualResult" className={({ isActive }) =>
+      {/* <NavLink to="/v1/individualResult" className={({ isActive }) =>
         isActive ? "py-2 px-3 rounded-tl-3xl rounded-br-3xl font-semibold glass bg-primary hover:bg-primary text-white flex flex-col justify-center items-center gap-1" : `py-2 px-3 rounded-tl-3xl rounded-br-3xl font-semibold border border-gray-300 duration-500 ${theme ? 'text-white' : 'text-black'} flex flex-col justify-center items-center gap-1`
-      }><HiOutlineDocumentMagnifyingGlass size={25} /><small className='text-xs text-center'>V1</small></NavLink>
-
-      <NavLink to="/dev" className={({ isActive }) =>
-        isActive ? "py-2 px-3 rounded-tl-3xl rounded-br-3xl font-semibold glass bg-primary text-white flex flex-col justify-center items-center gap-1" : `py-2 px-3 rounded-tl-3xl rounded-br-3xl font-semibold border border-gray-300 duration-500 ${theme ? 'text-white' : 'text-black'} flex flex-col justify-center items-center gap-1`
-      }><BiCode size={25} /><small className='text-xs text-center'>Developer</small></NavLink>
+      }><HiOutlineDocumentMagnifyingGlass size={25} /><small className='text-xs text-center'>V1</small></NavLink> */}
     </div>
   )
 

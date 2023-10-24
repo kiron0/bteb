@@ -5,7 +5,6 @@ import Root from './Layouts/Root';
 import NotFound from './shared/NotFound/NotFound';
 import GroupResult from './pages/GroupResult/GroupResult';
 import Preloader from './shared/Preloader/Preloader';
-import Developer from './pages/Developer/Developer';
 import CGPACalculator from './pages/CGPACalculator/CGPACalculator';
 import ResultForm1 from './pages/V1/ResultForm';
 import BookList from './pages/BookList/BookList';
@@ -13,6 +12,7 @@ import Department from './pages/BookList/Department';
 import Books from './pages/BookList/Books';
 import SingleResult from './pages/IndividualResult/SingleResult';
 import BottomNav from './shared/Navbar/BottomNav';
+import SingleResultFromGroup from './pages/GroupResult/SingleResultFromGroup';
 
 export const InitializeContext = createContext(null as any);
 
@@ -29,6 +29,10 @@ const router = createBrowserRouter(
     {
       path: '/groupResults',
       element: <GroupResult />,
+    },
+    {
+      path: '/individualResult/:roll/:regulation/:exam',
+      element: <SingleResultFromGroup />,
     },
     {
       path: '/cgpaCalc',
@@ -57,10 +61,6 @@ const router = createBrowserRouter(
           <BottomNav />
           <Books />
         </>,
-    },
-    {
-      path: '/dev',
-      element: <Developer />,
     },
     {
       path: '/v1/individualResult',

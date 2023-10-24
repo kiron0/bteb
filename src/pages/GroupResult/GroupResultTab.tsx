@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { InitializeContext } from '../../App'
+import { useNavigate } from 'react-router-dom'
 
 type Props = {
           finalResult: any
@@ -8,6 +9,11 @@ type Props = {
 
 export default function GroupResultTab({ finalResult, date }: Props) {
           const { theme } = useContext(InitializeContext);
+          const navigate = useNavigate();
+
+          const showResult = (roll: string, regulation: string, exam: string) => {
+                    navigate(`/individualResult/${roll}/${regulation}/${exam}`)
+          }
 
           return (
                     <div>
@@ -31,7 +37,7 @@ export default function GroupResultTab({ finalResult, date }: Props) {
                                                                       finalResult?.results?.map((result: any, index: number) => (
                                                                                 <tr key={index}>
                                                                                           <td>{index + 1}</td>
-                                                                                          {result?.roll && <td>{result?.roll}</td>}
+                                                                                          {result?.roll && <td className='md:hover:underline duration-300 md:cursor-pointer' onClick={() => showResult(result.roll, result.regulation, finalResult.exam)}>{result?.roll}</td>}
                                                                                           {result?.result?.gpa ? <td>{result?.result.gpa}</td> : result?.result?.reffereds && <td className={`${theme ? 'text-error' : 'text-red-500'}`}>{result?.result?.reffereds?.length} referred</td>}
                                                                                 </tr>
                                                                       ))
